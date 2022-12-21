@@ -1,19 +1,20 @@
 import React from 'react';
 import './App.css';
+import Header from "./Header";
+import Technologies from "./Technologies";
+
 
 function App() {
-  return (
-    <div className="App">
-     Hello, samurai! Let's go!
-        <ul>
-            <li>html</li>
-            <li>css</li>
-            <li>react</li>
-            <li>redux</li>
-            <li>yarn</li>
-        </ul>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Header/>
+            <Technologies/>
+        </div>
+    );
 }
+
+
+
+
 
 export default App;
