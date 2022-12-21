@@ -5,6 +5,13 @@ function App() {
   return (
     <div className="App">
      Hello, samurai! Let's go!
+        <ul>
+            <li>html</li>
+            <li>css</li>
+            <li>react</li>
+            <li>redux</li>
+            <li>yarn</li>
+        </ul>
     </div>
   );
 }
