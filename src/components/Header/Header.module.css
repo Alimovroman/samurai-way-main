@@ -1,0 +1,9 @@
+.header {
+    flex-basis: 100%;
+    background-color: antiquewhite;
+    height: 50px;
+    margin-bottom: 10px;
+}
+.logo {
+    width: 50px;
+}

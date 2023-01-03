@@ -2,23 +2,4 @@
   display: flex;
   flex-wrap: wrap;
 }
-.header {
-  flex-basis: 100%;
-  background-color: antiquewhite;
-  height: 50px;
-  margin-bottom: 10px;
-}
-.logo {
-  width: 50px;
-}
-.nav {
-  background-color: darkcyan;
-  flex-basis: 20%;
-}
-.content {
-  background-color: gray;
-  flex-basis: 80%;
-}
-.banner {
-  height: 300px;
-}
+

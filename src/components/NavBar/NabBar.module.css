@@ -1,0 +1,10 @@
+.nav {
+    background-color: darkcyan;
+    flex-basis: 20%;
+}
+.item {
+    color: white;
+}
+.item.active {
+    color: gold;
+}

@@ -1,10 +1,11 @@
 import React from 'react';
+import style from './Content.module.css'
 
 const Content = () => {
     return (
-        <div className={'content'}>
+        <div className={style.content}>
             <div>
-                <img className={'banner'} src={'https://kipmu.ru/wp-content/uploads/rost.jpg'} alt={'banner'} />
+                <img className={style.banner} src={'https://kipmu.ru/wp-content/uploads/rost.jpg'} alt={'banner'}/>
             </div>
             <div>
                 avatar+description
@@ -15,11 +16,13 @@ const Content = () => {
             <div>
                 New Posts
             </div>
-            <div>
-                Post 1
-            </div>
-            <div>
-                Post 2
+            <div className={style.posts}>
+                <div className={style.item}>
+                    Post 1
+                </div>
+                <div className={style.item}>
+                    Post 2
+                </div>
             </div>
         </div>
     );
