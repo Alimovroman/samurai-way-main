@@ -1,6 +1,6 @@
-import React from "react";
+import React, {FC} from "react";
 import style from './NabBar.module.css'
-const NavBar = () => {
+const NavBar: FC = () => {
     return (
         <nav className={style.nav}>
             <div>

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
 import NavBar from "./components/NavBar/NavBar";
-import Content from "./components/Content/Content";
+import Profile from "./components/Profile/Profile";
 
 
 
@@ -11,7 +11,7 @@ function App() {
         <div className="app">
             <Header />
             <NavBar />
-            <Content />
+            <Profile />
         </div>
     );
 }
