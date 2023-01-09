@@ -1,0 +1,6 @@
+
+.messages {
+    flex-basis: 60%;
+    display: flex;
+    flex-direction: column;
+}

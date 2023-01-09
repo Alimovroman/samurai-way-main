@@ -3,3 +3,7 @@
   flex-wrap: wrap;
 }
 
+.content {
+  background-color: gray;
+  flex-basis: 80%;
+}

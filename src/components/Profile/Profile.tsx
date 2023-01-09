@@ -1,16 +1,12 @@
 import React, {FC} from 'react';
 import style from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile: FC = () => {
     return (
-        <div className={style.content}>
-            <div>
-                <img className={style.banner} src={'https://kipmu.ru/wp-content/uploads/rost.jpg'} alt={'banner'}/>
-            </div>
-            <div>
-                avatar+description
-            </div>
+        <div className={style.profile}>
+            <ProfileInfo />
             <MyPosts />
         </div>
     );
