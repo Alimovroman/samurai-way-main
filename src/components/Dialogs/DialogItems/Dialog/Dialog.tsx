@@ -3,7 +3,7 @@ import style from "./Dialog.module.css";
 import {NavLink} from "react-router-dom";
 
 export type DialogTypeProps = {
-    path: string
+    path: number
     name: string
 }
 const Dialog: FC<DialogTypeProps> = ({path, name}) => {
