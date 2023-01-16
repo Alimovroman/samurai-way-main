@@ -1,6 +1,13 @@
+.dialog {
+    display: flex;
+    align-items: center;
+}
 .dialog a{
     text-decoration: none;
 }
 .active {
     color: gold;
+}
+.avatar {
+    width: 50px;
 }

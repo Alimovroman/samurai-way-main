@@ -1,21 +1,14 @@
 import React, {FC} from 'react';
 import style from './MyPosts.module.css'
 import Post from "./Post/Post";
+import {PostType} from "../../../redux/state";
 
-type PostType = {
-    id: number
-    message: string
-    counter: number
+type MyPostsPropsType = {
+    postData: Array<PostType>
 }
-const MyPosts: FC = () => {
+const MyPosts: FC<MyPostsPropsType> = ({postData}) => {
 
-    let postData: Array<PostType> = [
-        {id: 1, message: 'Hello', counter: 3},
-        {id: 2, message: 'how are you', counter: 5},
-        {id: 3, message: 'it is ok', counter: 7},
-        {id: 4, message: 'yo yo yo', counter: 13},
-        {id: 5, message: 'yuck', counter: 23},
-    ]
+
     return (
         <div>
             My posts

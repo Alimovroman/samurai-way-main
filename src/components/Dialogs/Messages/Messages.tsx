@@ -1,21 +1,15 @@
 import React, {FC} from 'react';
 import style from './Messages.module.css';
 import Message from "./message/Message";
+import {MessageType} from "../../../redux/state";
 
-type MessageType = {
-    id: number
-    text: string
-    nameStyle: 'user' | 'friend'
+type MessagesPropsType = {
+    messagesData: Array<MessageType>
 }
 
-const Messages: FC = () => {
+const Messages: FC<MessagesPropsType> = ({messagesData}) => {
 
-    let messagesData: Array<MessageType> = [
-        {id: 1, text: 'Hello', nameStyle: 'user'},
-        {id: 2, text: 'How are you', nameStyle: 'friend'},
-        {id: 3, text: 'Fine thanks', nameStyle: 'user'},
-        {id: 4, text: 'Yo yo yo', nameStyle: 'friend'},
-    ]
+
     return (
         <div className={style.messages}>
             {messagesData.map( mes => <Message key={mes.id} nameStyle={mes.nameStyle} text={mes.text}/>)}

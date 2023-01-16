@@ -2,3 +2,10 @@
     display: flex;
     justify-content: flex-end;
 }
+.text {
+
+    text-align: center;
+    border: antiquewhite 1px solid;
+    width: 150px;
+    border-radius: 10px;
+}
