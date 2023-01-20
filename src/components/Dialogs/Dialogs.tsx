@@ -8,13 +8,19 @@ type DialogsPropsType = {
     dialogsState: {
         dialogsData: Array<DialogType>
         messagesData: Array<MessageType>
+        messageText: string
     }
+    addMessage: (textMessage: string) => void
+    addTextInMessage: (text: string) => void
 }
-const Dialogs: FC<DialogsPropsType> = ({dialogsState}) => {
+const Dialogs: FC<DialogsPropsType> = ({dialogsState, addMessage, addTextInMessage}) => {
     return (
         <div className={style.dialogs}>
             <DialogItems dialogsData={dialogsState.dialogsData}/>
-            <Messages messagesData={dialogsState.messagesData}/>
+            <Messages messagesData={dialogsState.messagesData}
+                      messageText={dialogsState.messageText}
+                      addMessageCallBack={addMessage}
+                      addTextInMessage={addTextInMessage}/>
         </div>
     );
 };

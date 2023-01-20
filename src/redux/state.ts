@@ -1,3 +1,5 @@
+import rerenderEntireTree from "../render";
+
 export type PostType = {
     id: number
     message: string
@@ -22,11 +24,12 @@ export type FriendsSideBarType = {
 export type StateType = {
     profilePage: {
         postData: Array<PostType>
+        textPost: string
     }
     dialogsPage: {
         dialogsData: Array<DialogType>
         messagesData: Array<MessageType>
-
+        messageText: string
     }
     sideBar: {
         friends: Array<FriendsSideBarType>
@@ -41,7 +44,8 @@ const state: StateType = {
             {id: 3, message: 'it is ok', counter: 7},
             {id: 4, message: 'yo yo yo', counter: 13},
             {id: 5, message: 'yuck', counter: 23},
-        ]
+        ],
+        textPost: ''
     },
     dialogsPage: {
         dialogsData: [
@@ -57,7 +61,8 @@ const state: StateType = {
             {id: 2, text: 'How are you', nameStyle: 'friend'},
             {id: 3, text: 'Fine thanks', nameStyle: 'user'},
             {id: 4, text: 'Yo yo yo', nameStyle: 'friend'},
-        ]
+        ],
+        messageText: ''
     },
     sideBar: {
         friends: [
@@ -66,6 +71,31 @@ const state: StateType = {
             {id: 3, name: 'Boog', avatar: 'https://pixelbox.ru/wp-content/uploads/2022/06/avatar-telegram-girls-pixelbox.ru-49.jpg'}
         ]
     }
+}
+
+export const addPost = (postMessage: string) => {
+    const newPost: PostType = {
+        id: 6, message: postMessage, counter: 0
+    }
+    state.profilePage.postData.push(newPost)
+    state.profilePage.textPost = ''
+    rerenderEntireTree(state)
+}
+export const addMessage = (textMessage: string) => {
+    const newMessage: MessageType = {
+        id: 5, text: textMessage, nameStyle: 'user'
+    }
+    state.dialogsPage.messagesData.push(newMessage)
+    state.dialogsPage.messageText = ''
+    rerenderEntireTree(state)
+}
+export const addTextInMessage = (text: string) => {
+    state.dialogsPage.messageText = text
+    rerenderEntireTree(state)
+}
+export const addTextInPost = (text:string) => {
+    state.profilePage.textPost = text
+    rerenderEntireTree(state)
 }
 
 export default state

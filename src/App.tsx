@@ -8,20 +8,30 @@ import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {StateType} from "./redux/state";
+import {addTextInMessage, addTextInPost, StateType} from "./redux/state";
 
 type AppPropsType = {
     state: StateType
+    addPost: (postMessage: string) => void
+    addMessage: (textMessage: string) => void
+    addTextInMessage: (text: string) => void
+    addTextInPost: (text: string) => void
 }
-const App: FC<AppPropsType> = ({state}) => {
+const App: FC<AppPropsType> = ({state, addPost, addMessage, addTextInMessage, addTextInPost}) => {
     return (
         <BrowserRouter>
             <div className="app">
                 <Header/>
                 <NavBar stateNavBar={state.sideBar}/>
                 <div className={'content'}>
-                    <Route render={() => <Profile profileState={state.profilePage}/>} path={'/profile'}/>
-                    <Route render={() => <Dialogs dialogsState={state.dialogsPage}/>} path={'/message'}/>
+                    <Route render={() => <Profile profileState={state.profilePage}
+                                                  addPost={addPost}
+                                                  addTextInPost={addTextInPost}
+                    />} path={'/profile'} />
+                    <Route render={() => <Dialogs dialogsState={state.dialogsPage}
+                                                  addMessage={addMessage}
+                                                  addTextInMessage={addTextInMessage}
+                    />} path={'/message'}/>
                     <Route component={News} path={'/news'}/>
                     <Route component={Music} path={'/music'}/>
                     <Route component={Settings} path={'/settings'}/>
