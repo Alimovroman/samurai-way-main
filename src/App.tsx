@@ -8,16 +8,14 @@ import {BrowserRouter, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {addTextInMessage, addTextInPost, StateType} from "./redux/state";
+import {StateType, StoreType} from "./redux/state";
 
 type AppPropsType = {
     state: StateType
-    addPost: (postMessage: string) => void
-    addMessage: (textMessage: string) => void
-    addTextInMessage: (text: string) => void
-    addTextInPost: (text: string) => void
+    store: StoreType
+
 }
-const App: FC<AppPropsType> = ({state, addPost, addMessage, addTextInMessage, addTextInPost}) => {
+const App: FC<AppPropsType> = ({state, store}) => {
     return (
         <BrowserRouter>
             <div className="app">
@@ -25,12 +23,12 @@ const App: FC<AppPropsType> = ({state, addPost, addMessage, addTextInMessage, ad
                 <NavBar stateNavBar={state.sideBar}/>
                 <div className={'content'}>
                     <Route render={() => <Profile profileState={state.profilePage}
-                                                  addPost={addPost}
-                                                  addTextInPost={addTextInPost}
+                                                  addPost={store.addPost}
+                                                  addTextInPost={store.addTextInPost}
                     />} path={'/profile'} />
                     <Route render={() => <Dialogs dialogsState={state.dialogsPage}
-                                                  addMessage={addMessage}
-                                                  addTextInMessage={addTextInMessage}
+                                                  addMessage={store.addMessage}
+                                                  addTextInMessage={store.addTextInMessage}
                     />} path={'/message'}/>
                     <Route component={News} path={'/news'}/>
                     <Route component={Music} path={'/music'}/>

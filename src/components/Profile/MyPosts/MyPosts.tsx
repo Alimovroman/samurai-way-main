@@ -1,12 +1,12 @@
 import React, {FC, useRef} from 'react';
 import style from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {addTextInPost, PostType} from "../../../redux/state";
+import { PostType} from "../../../redux/state";
 
 type MyPostsPropsType = {
     postData: Array<PostType>
     textPost: string
-    addPostCallBack: (postMessage: string) => void
+    addPostCallBack: () => void
     addTextInPost: (text: string) => void
 }
 const MyPosts: FC<MyPostsPropsType> = ({postData, textPost, addPostCallBack, addTextInPost}) => {
@@ -14,8 +14,8 @@ const MyPosts: FC<MyPostsPropsType> = ({postData, textPost, addPostCallBack, add
     const ref = useRef<HTMLTextAreaElement | null>(null)
 
     const addPost = () => {
-        ref.current && addPostCallBack(ref.current.value)
-        ref.current!.value = ''
+        ref.current && addPostCallBack()
+        // ref.current!.value = ''
     }
     const onChangeText = () => {
         addTextInPost(ref.current!.value)

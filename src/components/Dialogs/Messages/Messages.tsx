@@ -6,7 +6,7 @@ import {MessageType} from "../../../redux/state";
 type MessagesPropsType = {
     messagesData: Array<MessageType>
     messageText: string
-    addMessageCallBack: (textMessage: string) => void
+    addMessageCallBack: () => void
     addTextInMessage: (text: string) => void
 }
 
@@ -15,8 +15,8 @@ const Messages: FC<MessagesPropsType> = ({messagesData, messageText, addMessageC
     const ref = useRef<HTMLTextAreaElement | null>(null)
 
     const addMessage = () => {
-        ref.current && addMessageCallBack(ref.current?.value)
-        ref.current!.value = ''
+        ref.current && addMessageCallBack()
+        // ref.current!.value = ''
     }
     const onChangeText = () => {
         addTextInMessage(ref.current!.value)

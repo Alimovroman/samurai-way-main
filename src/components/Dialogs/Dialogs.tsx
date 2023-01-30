@@ -10,7 +10,7 @@ type DialogsPropsType = {
         messagesData: Array<MessageType>
         messageText: string
     }
-    addMessage: (textMessage: string) => void
+    addMessage: () => void
     addTextInMessage: (text: string) => void
 }
 const Dialogs: FC<DialogsPropsType> = ({dialogsState, addMessage, addTextInMessage}) => {
