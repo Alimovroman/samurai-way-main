@@ -9,10 +9,11 @@ export type DialogType = {
     name: string
     avatar: string
 }
+export type NameStyleMessageType = 'user' | 'friend'
 export type MessageType = {
     id: number
     text: string
-    nameStyle: 'user' | 'friend'
+    nameStyle: NameStyleMessageType
 }
 export type FriendsSideBarType = {
     id: number

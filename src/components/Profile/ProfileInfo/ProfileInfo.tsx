@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {FC} from 'react';
 import style from "./ProfileInfo.module.css";
 
-const ProfileInfo = () => {
+const ProfileInfo: FC = () => {
     return (
         <div>
             <div>
