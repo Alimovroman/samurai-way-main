@@ -24,7 +24,7 @@ const Template: ComponentStory<typeof Dialog> = (args) => {
 export const DialogItem = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 DialogItem.args = {
-    avatar: store.state.dialogsPage.dialogsData[0].avatar,
+    avatar: store._state.dialogsPage.dialogsData[0].avatar,
     name: 'Roma',
     path: 2
 };

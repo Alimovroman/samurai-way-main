@@ -19,6 +19,6 @@ const Template: ComponentStory<typeof Post> = (args) => <Post {...args} />;
 export const PostComponent = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 PostComponent.args = {
-    message: store.state.profilePage.postData[0].message,
+    message: store._state.profilePage.postData[0].message,
     counter: 7
 };

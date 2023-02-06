@@ -20,5 +20,5 @@ const Template: ComponentStory<typeof Friends> = (args) => <Friends {...args} />
 export const FriendsComponent = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 FriendsComponent.args = {
-  friends: store.state.sideBar.friends
+  friends: store._state.sideBar.friends
 };

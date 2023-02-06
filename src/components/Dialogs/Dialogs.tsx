@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import style from './Dialogs.module.css'
 import DialogItems from "./DialogItems/DialogItems";
 import Messages from "./Messages/Messages";
-import {DialogType, MessageType} from "../../redux/state";
+import {ActionType, DialogType, MessageType} from "../../redux/state";
 
 type DialogsPropsType = {
     dialogsState: {
@@ -10,17 +10,16 @@ type DialogsPropsType = {
         messagesData: Array<MessageType>
         messageText: string
     }
-    addMessage: () => void
-    addTextInMessage: (text: string) => void
+    dispatch: (action: ActionType) => void
 }
-const Dialogs: FC<DialogsPropsType> = ({dialogsState, addMessage, addTextInMessage}) => {
+const Dialogs: FC<DialogsPropsType> = ({dialogsState, dispatch}) => {
     return (
         <div className={style.dialogs}>
             <DialogItems dialogsData={dialogsState.dialogsData}/>
             <Messages messagesData={dialogsState.messagesData}
                       messageText={dialogsState.messageText}
-                      addMessageCallBack={addMessage}
-                      addTextInMessage={addTextInMessage}/>
+                      dispatch={dispatch}
+            />
         </div>
     );
 };

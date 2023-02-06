@@ -1,25 +1,27 @@
 import React, {ChangeEvent, FC, useRef} from 'react';
 import style from './Messages.module.css';
 import Message from "./message/Message";
-import {MessageType} from "../../../redux/state";
+import {ActionType, MessageType} from "../../../redux/state";
+import {addMessageAction, addTextInMessageAction} from "../../../redux/dialog-reducer";
 
 type MessagesPropsType = {
     messagesData: Array<MessageType>
     messageText: string
-    addMessageCallBack: () => void
-    addTextInMessage: (text: string) => void
+    dispatch: (action: ActionType) => void
 }
 
-const Messages: FC<MessagesPropsType> = ({messagesData, messageText, addMessageCallBack, addTextInMessage}) => {
+
+
+const Messages: FC<MessagesPropsType> = ({messagesData, messageText, dispatch}) => {
 
     const ref = useRef<HTMLTextAreaElement | null>(null)
 
     const addMessage = () => {
-        ref.current && addMessageCallBack()
+        ref.current && dispatch(addMessageAction())
         // ref.current!.value = ''
     }
     const onChangeText = () => {
-        addTextInMessage(ref.current!.value)
+        dispatch(addTextInMessageAction(ref.current!.value))
     }
 
     return (

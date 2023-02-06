@@ -19,9 +19,8 @@ const Template: ComponentStory<typeof Messages> = (args) => <Messages {...args} 
 
 export const AllMessages = Template.bind({});
 AllMessages.args = {
-  messagesData: store.state.dialogsPage.messagesData,
-  messageText:  store.state.dialogsPage.messageText,
-  addMessageCallBack: store.addMessage,
-  addTextInMessage: store.addTextInMessage
+  messagesData: store._state.dialogsPage.messagesData,
+  messageText:  store._state.dialogsPage.messageText,
+  dispatch: store.dispatch
 };
 

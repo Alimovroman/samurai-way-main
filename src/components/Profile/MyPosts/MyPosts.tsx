@@ -1,24 +1,29 @@
 import React, {FC, useRef} from 'react';
 import style from './MyPosts.module.css'
 import Post from "./Post/Post";
-import { PostType} from "../../../redux/state";
+import {ActionType, PostType} from "../../../redux/state";
+import {addPostAction, addTextInPostAction} from "../../../redux/profile-reducer";
 
 type MyPostsPropsType = {
     postData: Array<PostType>
     textPost: string
-    addPostCallBack: () => void
-    addTextInPost: (text: string) => void
+    dispatch: (action: ActionType) => void
+
 }
-const MyPosts: FC<MyPostsPropsType> = ({postData, textPost, addPostCallBack, addTextInPost}) => {
+
+
+const MyPosts: FC<MyPostsPropsType> = ({postData, textPost, dispatch}) => {
 
     const ref = useRef<HTMLTextAreaElement | null>(null)
 
     const addPost = () => {
-        ref.current && addPostCallBack()
+        const action = addPostAction()
+        ref.current && dispatch(action)
         // ref.current!.value = ''
     }
     const onChangeText = () => {
-        addTextInPost(ref.current!.value)
+        const action = addTextInPostAction(ref.current!.value)
+        dispatch(action)
     }
 
     return (

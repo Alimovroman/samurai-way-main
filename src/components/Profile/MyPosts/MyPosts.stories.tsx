@@ -19,8 +19,7 @@ const Template: ComponentStory<typeof MyPosts> = (args) => <MyPosts {...args} />
 export const MyPostsComponents = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 MyPostsComponents.args = {
-    postData: store.state.profilePage.postData,
-    textPost: store.state.profilePage.textPost,
-    addPostCallBack: store.addPost,
-    addTextInPost: store.addTextInPost
+    postData: store._state.profilePage.postData,
+    textPost: store._state.profilePage.textPost,
+    dispatch: store.dispatch
 };
