@@ -3,23 +3,16 @@ import style from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ActionType, PostType} from "../../redux/redux";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 
 type ProfilePropsType = {
-    profileState: {
-        postData: Array<PostType>
-        textPost: string
-    }
-    dispatch: (action: ActionType) => void
 }
-const Profile: FC<ProfilePropsType> = ({profileState, dispatch}) => {
+const Profile: FC<ProfilePropsType> = () => {
     return (
         <div className={style.profile}>
             <ProfileInfo/>
-            <MyPosts postData={profileState.postData}
-                     textPost={profileState.textPost}
-                     dispatch={dispatch}
-            />
+            <MyPostsContainer/>
         </div>
     );
 };

@@ -20,6 +20,4 @@ const Template: ComponentStory<typeof Profile> = (args) => <Profile {...args} />
 export const ProfileComponents = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 ProfileComponents.args = {
-    dispatch: store.dispatch,
-    profileState: store._state.profilePage,
 };

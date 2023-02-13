@@ -3,23 +3,15 @@ import style from './Dialogs.module.css'
 import DialogItems from "./DialogItems/DialogItems";
 import Messages from "./Messages/Messages";
 import {ActionType, DialogType, MessageType} from "../../redux/redux";
+import MessagesContainer from "./Messages/MessagesContainer";
 
 type DialogsPropsType = {
-    dialogsState: {
-        dialogsData: Array<DialogType>
-        messagesData: Array<MessageType>
-        messageText: string
-    }
-    dispatch: (action: ActionType) => void
 }
-const Dialogs: FC<DialogsPropsType> = ({dialogsState, dispatch}) => {
+const Dialogs: FC<DialogsPropsType> = () => {
     return (
         <div className={style.dialogs}>
-            <DialogItems dialogsData={dialogsState.dialogsData}/>
-            <Messages messagesData={dialogsState.messagesData}
-                      messageText={dialogsState.messageText}
-                      dispatch={dispatch}
-            />
+            <DialogItems />
+            <MessagesContainer />
         </div>
     );
 };

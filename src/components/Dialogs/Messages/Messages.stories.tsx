@@ -1,26 +1,24 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Messages from "./Messages";
 import {store} from "../../../redux/redux";
+import MessagesContainer from "./MessagesContainer";
 
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'All Message',
-  component: Messages,
+  component: MessagesContainer,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     backgroundColor: { control: 'color' },
   },
-} as ComponentMeta<typeof Messages>;
+} as ComponentMeta<typeof MessagesContainer>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Messages> = (args) => <Messages {...args} />;
+const Template: ComponentStory<typeof MessagesContainer> = (args) => <MessagesContainer {...args} />;
 
 export const AllMessages = Template.bind({});
 AllMessages.args = {
-  messagesData: store._state.dialogsPage.messagesData,
-  messageText:  store._state.dialogsPage.messageText,
-  dispatch: store.dispatch
+
 };
 

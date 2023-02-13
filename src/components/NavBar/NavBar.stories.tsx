@@ -24,6 +24,6 @@ const Template: ComponentStory<typeof NavBar> = (args) => {
 export const NavBarComponent = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 NavBarComponent.args = {
-    stateNavBar: store._state.sideBar
+
 };
 

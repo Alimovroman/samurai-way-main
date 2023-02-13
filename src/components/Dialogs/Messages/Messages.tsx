@@ -7,32 +7,37 @@ import {addMessageAction, addTextInMessageAction} from "../../../redux/dialog-re
 type MessagesPropsType = {
     messagesData: Array<MessageType>
     messageText: string
-    dispatch: (action: ActionType) => void
+    addMessage: () => void
+    changeText: (text: string) => void
+
 }
 
 
-
-const Messages: FC<MessagesPropsType> = ({messagesData, messageText, dispatch}) => {
+const Messages: FC<MessagesPropsType> = ({
+                                             messagesData,
+                                             messageText,
+                                             addMessage,
+                                             changeText
+                                         }) => {
 
     const ref = useRef<HTMLTextAreaElement | null>(null)
 
-    const addMessage = () => {
-        ref.current && dispatch(addMessageAction())
-        // ref.current!.value = ''
+    const onAddMessage = () => {
+        ref.current && addMessage()
     }
     const onChangeText = () => {
-        dispatch(addTextInMessageAction(ref.current!.value))
+        changeText(ref.current!.value)
     }
 
     return (
         <div className={style.messages}>
-            {messagesData.map( mes => <Message key={mes.id} nameStyle={mes.nameStyle} text={mes.text}/>)}
+            {messagesData.map(mes => <Message key={mes.id} nameStyle={mes.nameStyle} text={mes.text}/>)}
             <div>
                 <div>
                     <textarea ref={ref} onChange={onChangeText} value={messageText}/>
                 </div>
                 <div>
-                    <button onClick={addMessage}>
+                    <button onClick={onAddMessage}>
                         Add
                     </button>
                 </div>

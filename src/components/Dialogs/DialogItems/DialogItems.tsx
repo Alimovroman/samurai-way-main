@@ -2,16 +2,23 @@ import React, {FC} from 'react';
 import style from './DialogItems.module.css'
 import Dialog from "./Dialog/Dialog";
 import {DialogType} from "../../../redux/redux";
+import {MyContext} from "../../../StoreContext";
 
 type DialogsItemsProps = {
-    dialogsData: Array<DialogType>
 }
-const DialogItems: FC<DialogsItemsProps> = ({dialogsData}) => {
+const DialogItems: FC<DialogsItemsProps> = () => {
 
     return (
-        <div className={style.dialogItems}>
-            {dialogsData.map(obj => <Dialog key={obj.id} path={obj.id} name={obj.name} avatar={obj.avatar} />)}
-        </div>
+        <MyContext.Consumer>
+            {store => {
+                const dialogsData: DialogType[] = store.getState().dialogsPage.dialogsData
+                return <div className={style.dialogItems}>
+                    {dialogsData.map(obj => <Dialog key={obj.id} path={obj.id} name={obj.name} avatar={obj.avatar}/>)}
+                </div>
+            }
+            }
+        </MyContext.Consumer>
+
     );
 };
 

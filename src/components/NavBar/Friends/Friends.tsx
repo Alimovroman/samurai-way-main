@@ -18,7 +18,6 @@ const Friends: FC<FriendsPropsType> = ({friends}) => {
                             <div>
                                 {f.name}
                             </div>
-
                         </div>
                     )
                 })}
