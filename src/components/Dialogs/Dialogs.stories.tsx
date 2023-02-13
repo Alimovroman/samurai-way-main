@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Dialogs from "./Dialogs";
-import {store} from "../../redux/state";
+import {store} from "../../redux/redux";
 import {BrowserRouter, Route} from "react-router-dom";
 
 export default {

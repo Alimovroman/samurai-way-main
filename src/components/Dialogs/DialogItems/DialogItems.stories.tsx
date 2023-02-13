@@ -2,7 +2,7 @@ import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import {BrowserRouter, Route} from "react-router-dom";
 import DialogItems from "./DialogItems";
-import {store} from "../../../redux/state";
+import {store} from "../../../redux/redux";
 
 export default {
     title: 'DialogsItems',

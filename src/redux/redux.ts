@@ -1,5 +1,5 @@
-import profileReducer from "./profile-reducer";
-import dialogReducer from "./dialog-reducer";
+import profileReducer, {AddPostACType, AddTextInPostACType} from "./profile-reducer";
+import dialogReducer, {AddMessageACType, AddTextInMessageACType} from "./dialog-reducer";
 import sideBarReducer from "./sideBar-reducer";
 
 export type PostType = {
@@ -23,10 +23,11 @@ export type FriendsSideBarType = {
     name: string
     avatar: string
 }
-export type ActionType = {
-    type: 'ADD-POST' | 'ADD-TEXT-IN-POST' | 'ADD-MESSAGE' | 'ADD-TEXT-IN-MESSAGE'
-    text?: string
-}
+export type ActionType = AddPostACType | AddTextInPostACType | AddMessageACType | AddTextInMessageACType
+//     {
+//     type: 'ADD-POST' | 'ADD-TEXT-IN-POST' | 'ADD-MESSAGE' | 'ADD-TEXT-IN-MESSAGE'
+//     text?: string
+// }
 export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsType

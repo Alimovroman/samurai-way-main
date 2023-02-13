@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FC, useRef} from 'react';
 import style from './Messages.module.css';
 import Message from "./message/Message";
-import {ActionType, MessageType} from "../../../redux/state";
+import {ActionType, MessageType} from "../../../redux/redux";
 import {addMessageAction, addTextInMessageAction} from "../../../redux/dialog-reducer";
 
 type MessagesPropsType = {

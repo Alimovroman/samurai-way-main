@@ -1,7 +1,7 @@
 import React from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import Profile from "./Profile";
-import {store} from "../../redux/state";
+import {store} from "../../redux/redux";
 
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export

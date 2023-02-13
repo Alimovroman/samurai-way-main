@@ -1,7 +1,7 @@
 import React, {FC, useRef} from 'react';
 import style from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ActionType, PostType} from "../../../redux/state";
+import {ActionType, PostType} from "../../../redux/redux";
 import {addPostAction, addTextInPostAction} from "../../../redux/profile-reducer";
 
 type MyPostsPropsType = {
