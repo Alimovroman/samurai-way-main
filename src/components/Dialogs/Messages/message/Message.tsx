@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import style from  './Message.module.css'
-import {NameStyleMessageType} from "../../../../redux/redux";
+import {NameStyleMessageType} from "../../../../redux/dialog-reducer";
 
 export type MessageTypeProps = {
     nameStyle: NameStyleMessageType

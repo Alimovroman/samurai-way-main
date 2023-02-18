@@ -1,15 +1,7 @@
 import React, {FC, useRef} from 'react';
 import style from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostType} from "../../../redux/redux";
-type MyPostsPropsType = {
-    postData: Array<PostType>
-    textPost: string
-    addPost: () => void
-    changeText: (text: string) => void
-    //dispatch: (action: ActionType) => void
-
-}
+import {MyPostsPropsType} from "./MyPostsContainer";
 
 
 const MyPosts: FC<MyPostsPropsType> = ({

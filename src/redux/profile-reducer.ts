@@ -1,10 +1,17 @@
-import {ActionType, PostType, ProfilePageType} from "./redux";
-
 const ADD_POST = "ADD-POST"
 const ADD_TEXT_IN_POST = 'ADD-TEXT-IN-POST'
 
 export type AddPostACType = ReturnType<typeof addPostAction>
 export type AddTextInPostACType = ReturnType<typeof addTextInPostAction>
+export type PostType = {
+    id: number
+    message: string
+    counter: number
+}
+export type ProfilePageType = {
+    postData: Array<PostType>
+    textPost: string
+}
 
 const initialState: ProfilePageType = {
     postData: [
@@ -16,7 +23,7 @@ const initialState: ProfilePageType = {
     ],
     textPost: ''
 }
-
+type ActionType = AddPostACType | AddTextInPostACType
 
 const profileReducer = (state  = initialState, action: ActionType) => {
     switch (action.type) {
@@ -24,12 +31,16 @@ const profileReducer = (state  = initialState, action: ActionType) => {
             const newPost: PostType = {
                 id: 6, message: state.textPost, counter: 0
             }
-            state.postData.push(newPost)
             state.textPost = ''
-            return state
+            return {
+                ...state,
+                postData: [...state.postData, newPost]
+            }
         case ADD_TEXT_IN_POST:
-            state.textPost = action.text!
-            return state
+            return {
+                ...state,
+                textPost: action.text
+            }
         default:
             return state
     }

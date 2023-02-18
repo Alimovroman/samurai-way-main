@@ -1,41 +1,38 @@
-import React, {ChangeEvent, FC, useRef} from 'react';
-import style from './Messages.module.css';
-import Message from "./message/Message";
-import {ActionType, DialogsType, MessageType} from "../../../redux/redux";
-import {addMessageAction, addTextInMessageAction} from "../../../redux/dialog-reducer";
+import React from 'react';
+import {addMessageAction, addTextInMessageAction, MessageType} from "../../../redux/dialog-reducer";
 import Messages from "./Messages";
-import {MyContext} from "../../../StoreContext";
+import {Dispatch} from "redux";
+import {connect} from "react-redux";
+import {AppStateType} from "../../../redux/redux-store";
 
-type MessagesContainerPropsType = {
-    // messagesData: Array<MessageType>
-    // messageText: string
-    // dispatch: (action: ActionType) => void
+export type MessagesPropsType = MapStateToProps & MapDispatchToPropsType
+
+type MapStateToProps = {
+    messagesData: Array<MessageType>
+    messageText: string
+}
+type MapDispatchToPropsType = {
+    addMessage: () => void
+    changeText: (text: string) => void
+
+}
+const mapStateToProps = (state: AppStateType): MapStateToProps => {
+    return {
+        messagesData: state.dialogsPage.messagesData,
+        messageText: state.dialogsPage.messageText
+    }
+}
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+    return {
+        addMessage: () => {
+            dispatch(addMessageAction())
+        } ,
+        changeText: (text: string) => {
+            dispatch(addTextInMessageAction(text))
+        }
+    }
 }
 
-
-const MessagesContainer: FC<MessagesContainerPropsType> = () => {
-
-
-    return (
-        <MyContext.Consumer>
-            {store => {
-                const addMessage = () => {
-                    store.dispatch(addMessageAction())
-                }
-                const changeText = (text: string) => {
-                    store.dispatch(addTextInMessageAction(text))
-                }
-                const state: DialogsType = store.getState().dialogsPage
-                return <Messages messagesData={state.messagesData}
-                                 messageText={state.messageText}
-                                 addMessage={addMessage}
-                                 changeText={changeText}
-                />
-            }
-            }
-        </MyContext.Consumer>
-
-    );
-};
+const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages)
 
 export default MessagesContainer;

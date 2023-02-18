@@ -2,11 +2,13 @@ import React, {FC} from "react";
 import style from './NabBar.module.css'
 import {NavLink} from "react-router-dom";
 import Friends from "./Friends/Friends";
-import {FriendsSideBarType, SideBarType} from "../../redux/redux";
-import {MyContext} from "../../StoreContext";
+import {connect} from "react-redux";
+import {Dispatch} from "redux";
+import {AppStateType} from "../../redux/redux-store";
+import {FriendsSideBarType} from "../../redux/sideBar-reducer";
 
-type NavbarPropsType = {}
-const NavBar: FC<NavbarPropsType> = () => {
+type NavbarPropsType = MapStateToPropsType & MapDispatchToPropsType
+const NavBar: FC<NavbarPropsType> = ({friends}) => {
     return (
         <nav className={style.nav}>
             <div>
@@ -24,16 +26,23 @@ const NavBar: FC<NavbarPropsType> = () => {
             <div>
                 <NavLink className={style.item} activeClassName={style.active} to={'/settings'}>Settings</NavLink>
             </div>
-            <MyContext.Consumer>
-                {store => {
-                    const friends: FriendsSideBarType[] = store.getState().sideBar.friends
-                    return <Friends friends={friends}/>
-                }
-                }
-            </MyContext.Consumer>
-
+            <Friends friends={friends}/>
         </nav>
     )
 }
 
-export default NavBar;
+type MapStateToPropsType = {
+    friends: FriendsSideBarType[]
+}
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    return {
+        friends: state.sideBar.friends
+    }
+}
+type MapDispatchToPropsType = {}
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+    return {}
+}
+const NavBarContainer = connect(mapStateToProps, mapDispatchToProps)(NavBar)
+
+export default NavBarContainer;
