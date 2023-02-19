@@ -8,6 +8,8 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import NavBarContainer from "./components/NavBar/NavBar";
+import UsersContainer from "./components/Users/UsersContainer";
+
 
 type AppPropsType = {}
 const App: FC<AppPropsType> = () => {
@@ -18,6 +20,7 @@ const App: FC<AppPropsType> = () => {
             <div className={'content'}>
                 <Route render={() => <Profile/>} path={'/profile'}/>
                 <Route render={() => <Dialogs/>} path={'/message'}/>
+                <Route render={() => <UsersContainer/>} path={'/users'}/>
                 <Route component={News} path={'/news'}/>
                 <Route component={Music} path={'/music'}/>
                 <Route component={Settings} path={'/settings'}/>

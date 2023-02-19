@@ -18,6 +18,9 @@ const NavBar: FC<NavbarPropsType> = ({friends}) => {
                 <NavLink className={style.item} activeClassName={style.active} to={'/message'}>Message</NavLink>
             </div>
             <div>
+                <NavLink className={style.item} activeClassName={style.active} to={'/users'}>Users</NavLink>
+            </div>
+            <div>
                 <NavLink className={style.item} activeClassName={style.active} to={'/news'}>News</NavLink>
             </div>
             <div>

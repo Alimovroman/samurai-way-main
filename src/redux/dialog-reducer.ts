@@ -45,9 +45,10 @@ const dialogReducer = (state = initialState, action: ActionType): DialogsType =>
             const newMessage: MessageType = {
                 id: 5, text: state.messageText, nameStyle: 'user'
             }
-            state.messageText = ''
+            // state.messageText = ''
             return {
                 ...state,
+                messageText: '',
                 messagesData: [
                     ...state.messagesData, newMessage
                 ]

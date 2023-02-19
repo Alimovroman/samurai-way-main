@@ -31,9 +31,10 @@ const profileReducer = (state  = initialState, action: ActionType) => {
             const newPost: PostType = {
                 id: 6, message: state.textPost, counter: 0
             }
-            state.textPost = ''
+            // state.textPost = ''
             return {
                 ...state,
+                textPost: '',
                 postData: [...state.postData, newPost]
             }
         case ADD_TEXT_IN_POST:
