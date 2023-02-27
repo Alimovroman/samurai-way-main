@@ -1,59 +1,49 @@
 import style from './Users.module.css'
 import React, {FC} from 'react';
 import {UsersPropsType} from "./UsersContainer";
+import axios from "axios";
+import userPhoto from '../assets/images/user_photo.jpg'
 
-const Users: FC<UsersPropsType> = ({
-                                       users,
-                                       setUsers,
-                                       followed,
-                                       unfollowed
-                                   }) => {
-    if (users.length === 0) {
-        setUsers([
-            {
-                id: 1, photoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-                followed: true, fullName: 'Roman', location: {city: 'RZN', country: 'Russia'}, status: 'Super Man'
-            },
-            {
-                id: 2, photoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-                followed: false, fullName: 'Alex', location: {city: 'RZN', country: 'Russia'}, status: 'Super Man'
-            },
-            {
-                id: 3, photoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-                followed: true, fullName: 'Mari', location: {city: 'RZN', country: 'Russia'}, status: 'Super Man'
-            },
-            {
-                id: 4, photoUrl: 'https://pixelbox.ru/wp-content/uploads/2021/03/ava-instagram-4.jpg',
-                followed: true, fullName: 'Boog', location: {city: 'RZN', country: 'Russia'}, status: 'Super Man'
-            },
-        ])
+class Users extends React.Component<UsersPropsType> {
+    componentDidMount() {
+        axios
+            .get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            })
     }
-    return (
-        <div className={style.root}>
-            {users.map(u => <div key={u.id} className={style.user}>
-                <div>
+
+    render() {
+        return (
+            <div className={style.root}>
+                {this.props.users.map(u => <div key={u.id} className={style.user}>
                     <div>
-                        <img src={u.photoUrl} alt={'avatar'} className={style.avatar}/>
+                        <div>
+                            <img src={u.photos.small ? u.photos.small : userPhoto}
+                                 alt={'avatar'}
+                                 className={style.avatar}
+                            />
+                        </div>
+                        <div>
+                            {u.followed
+                                ? <button onClick={() => this.props.unfollowed(u.id)}>follow</button>
+                                : <button onClick={() => this.props.followed(u.id)}>unfollow</button>}
+                        </div>
                     </div>
-                    <div>
-                        {u.followed
-                            ? <button onClick={() => unfollowed(u.id)}>follow</button>
-                            : <button onClick={() => followed(u.id)}>unfollow</button>}
+                    <div className={style.userInfo}>
+                        <div>
+                            <div>{u.name}</div>
+                            <div>{u.status}</div>
+                        </div>
+                        <div>
+                            <div>{'u.location.city'}</div>
+                            <div>{'u.location.country'}</div>
+                        </div>
                     </div>
-                </div>
-                <div className={style.userInfo}>
-                    <div>
-                        <div>{u.fullName}</div>
-                        <div>{u.status}</div>
-                    </div>
-                    <div>
-                        <div>{u.location.city}</div>
-                        <div>{u.location.country}</div>
-                    </div>
-                </div>
-            </div>)}
-        </div>
-    );
-};
+                </div>)}
+            </div>
+        )
+    }
+}
 
 export default Users;
