@@ -3,7 +3,21 @@
     background-color: antiquewhite;
     height: 50px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 .logo {
     width: 50px;
+}
+.authBlock {
+    display: flex;
+}
+.userIsOnline {
+    display: flex;
+    align-items: center;
+    width: 150px;
+    justify-content: space-between;
+}
+.userIsOnline img {
+    width: 40px;
 }
