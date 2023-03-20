@@ -10,6 +10,7 @@ export type MessagesPropsType = MapStateToProps & MapDispatchToPropsType
 type MapStateToProps = {
     messagesData: Array<MessageType>
     messageText: string
+    isAuthUser: boolean
 }
 type MapDispatchToPropsType = {
     addMessage: () => void
@@ -19,7 +20,8 @@ type MapDispatchToPropsType = {
 const mapStateToProps = (state: AppStateType): MapStateToProps => {
     return {
         messagesData: state.dialogsPage.messagesData,
-        messageText: state.dialogsPage.messageText
+        messageText: state.dialogsPage.messageText,
+        isAuthUser: state.auth.isAuth
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
@@ -33,6 +35,4 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages)
-
-export default MessagesContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(Messages)

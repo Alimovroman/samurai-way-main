@@ -1,4 +1,6 @@
 import {PhotosType} from "./users-reducer";
+import {Dispatch} from "redux";
+import {profileApi} from "../api/api";
 
 const ADD_POST = "ADD-POST"
 const ADD_TEXT_IN_POST = 'ADD-TEXT-IN-POST'
@@ -83,3 +85,12 @@ export const addPostAction = () => ({type: ADD_POST} as const)
 
 export const addTextInPostAction = (text: string) => ({type: ADD_TEXT_IN_POST, text} as const)
 export const setUserProfile = (userProfile: UserProfileType) => ({type: 'SET-USER-PROFILE', userProfile} as const)
+
+export const getProfile = (userId: string) => (dispatch: Dispatch) => {
+    if (!userId) {
+        userId = '6990'
+    }
+    profileApi.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data))
+    })
+}

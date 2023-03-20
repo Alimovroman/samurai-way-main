@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {authApi} from "../api/api";
+
 export type InitialStateType = {
     id: null | number
     email: null | string
@@ -55,4 +58,16 @@ export const setUserPhoto = (photo: string) => {
     } as const
 }
 
+export const getAuth = () => (dispatch: Dispatch) => {
+    authApi.getAuthMe().then(response => {
+        if (response.resultCode === 0) {
+            const {id, email, login} = response.data
+            dispatch(setAuth(id, email, login))
+
+            authApi.getPhotoMe(id).then(resp => {
+                dispatch(setUserPhoto(resp.photos.small))
+            })
+        }
+    })
+}
 export default authReducer
