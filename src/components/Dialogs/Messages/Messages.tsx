@@ -2,7 +2,6 @@ import React, {ChangeEvent, FC, useRef} from 'react';
 import style from './Messages.module.css';
 import Message from "./message/Message";
 import {MessagesPropsType} from "./MessagesContainer";
-import {Redirect} from "react-router-dom";
 
 
 const Messages: FC<MessagesPropsType> = ({
