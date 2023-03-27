@@ -29,6 +29,14 @@ class ProfileStatus extends React.Component<PropsType> {
 
     }
 
+    componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
+       if(prevProps.status !== this.state.statusValue) {
+           this.setState({
+               statusValue: prevProps.status
+           })
+       }
+
+    }
 
     render() {
         return (
@@ -46,8 +54,6 @@ class ProfileStatus extends React.Component<PropsType> {
                                 autoFocus={true}/>
                     </div>
                 }
-
-
             </div>
         );
     }
