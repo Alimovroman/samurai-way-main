@@ -3,14 +3,18 @@ import style from "./ProfileInfo.module.css";
 import {UserProfileType} from "../../../redux/profile-reducer";
 import Preloader from "../../common/Preloader/Preloader";
 import avatar from './../../assets/images/user_photo.jpg'
+import ProfileStatus from "./ProfileStatus";
 
 type PropsType = {
     userProfile: UserProfileType
+    status: string
+    updateStatus: (status: string) => void
 }
-const ProfileInfo: FC<PropsType> = ({userProfile}) => {
+const ProfileInfo: FC<PropsType> = ({userProfile, status, updateStatus}) => {
     if (!userProfile) {
         return <Preloader/>
     }
+
     return (
         <div>
             <div>
@@ -21,9 +25,8 @@ const ProfileInfo: FC<PropsType> = ({userProfile}) => {
                     <img src={userProfile.photos.large ? userProfile.photos.large : avatar} alt={'photos'}/>
                 </div>
                 <span>{userProfile.fullName}</span>
-                <p>
-                    {userProfile.aboutMe}
-                </p>
+                <ProfileStatus status={status} updateStatus={updateStatus}/>
+                <p>{userProfile.aboutMe}</p>
                 <div>
                     <h3>Contacts</h3>
                     <p>{userProfile.contacts.vk}</p>
