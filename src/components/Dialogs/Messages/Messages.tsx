@@ -8,7 +8,6 @@ import {Redirect} from "react-router-dom";
 const Messages: FC<MessagesPropsType> = ({
                                              messagesData,
                                              messageText,
-                                             isAuthUser,
                                              addMessage,
                                              changeText
                                          }) => {
@@ -21,7 +20,7 @@ const Messages: FC<MessagesPropsType> = ({
     const onChangeText = () => {
         changeText(ref.current!.value)
     }
-    if (!isAuthUser) return <Redirect to={'./login'} />
+    // if (!isAuthUser) return <Redirect to={'./login'} />
     return (
         <div className={style.messages}>
             {messagesData.map(mes => <Message key={mes.id} nameStyle={mes.nameStyle} text={mes.text}/>)}
@@ -38,5 +37,7 @@ const Messages: FC<MessagesPropsType> = ({
         </div>
     );
 };
+
+
 
 export default Messages;
