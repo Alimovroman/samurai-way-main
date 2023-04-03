@@ -3,7 +3,6 @@ import Header from "./Header";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {getAuth, logout, setUserPhoto} from "../../redux/auth-reducer";
-import {Redirect} from "react-router-dom";
 
 export type HeaderPropsType = MapDispatchToPropsType & MapStateToPropsType
 

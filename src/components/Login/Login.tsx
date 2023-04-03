@@ -11,7 +11,7 @@ const Login: FC<MapDispatchToPropsType & MapStateToPropsType> = ({login, isAuth}
         login(email, password, rememberMe)
 
     }
-    console.log(isAuth)
+
     if (isAuth) {
         return <Redirect to={'profile'}/>
     }

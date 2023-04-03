@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
 import {authApi} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 export type InitialStateType = {
     id: null | number
@@ -75,13 +76,14 @@ export const getAuth = () => (dispatch: Dispatch) => {
         }
     })
 }
-export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
+export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
     authApi.login(email, password, rememberMe)
         .then(res => {
             if (res.resultCode === 0) {
-
-                 // @ts-ignore
                 dispatch(getAuth())
+            } else {
+                const message = res.messages.length > 0 ? res.messages : 'Some error'
+                dispatch(stopSubmit("login", {_error: message}))
             }
         })
 }

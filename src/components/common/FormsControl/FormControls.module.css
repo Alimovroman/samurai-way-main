@@ -9,3 +9,7 @@
 .formControl.error span {
     color: #810b0b;
 }
+.formSummuryError {
+    border: 2px saddlebrown solid;
+    color: saddlebrown;
+}

@@ -4,17 +4,16 @@ import style from './FormControls.module.css'
 const FormControl: FC<Props> = ({
                                     input,
                                     type,
-                                    child,
-                                    element,
-                                    meta: {touched, error, warning}
+                                    meta,
+                                    ...props
                                 }) => {
+
     return (
-        <div className={`${style.formControl} ${touched && error ? style.error : ""}`}>
+        <div className={`${style.formControl} ${meta.touched && meta.error ? style.error : ""}`}>
             <div>
-                {element === 'input' && <input {...input} type={type}/>}
-                {element === 'textArea' && <textarea {...input} type={type}/>}
+                {props.children}
             </div>
-            {touched && error && <span>{error}</span>}
+            {meta.touched && meta.error && <span>{meta.error}</span>}
         </div>
     )
 }
@@ -33,20 +32,25 @@ type Props = {
     //     value: string
     // }
     type: string
-    child: ReactNode
+    children: ReactNode
     meta: any
-    element: "input" | "textArea"
 }
 
 export const TextArea: FC<Props> = (props) => {
+    const {input, meta, children, ...restProps} = props
     return (
-        <FormControl {...props} element={'textArea'}/>
+        <FormControl {...props} >
+            <textarea {...input} {...restProps}/>
+        </FormControl>
 
     )
 }
 
 export const Input: FC<Props> = (props) => {
+    const {input, meta, children, ...restProps} = props
     return (
-        <FormControl {...props} element={'input'}/>
+        <FormControl {...props} >
+            <input {...input} {...restProps}/>
+        </FormControl>
     )
 }
