@@ -44,5 +44,13 @@ export const authApi = {
     getPhotoMe: (id: string) => {
         return instance.get(`profile/${id}`)
             .then(response => response.data)
+    },
+    login: (email: string, password: string, rememberMe: boolean = false) => {
+        return instance.post(`auth/login`, {email, password, rememberMe})
+            .then(res => res.data)
+    },
+    logout: () => {
+        return instance.delete(`auth/login`)
+            .then(res => res.data)
     }
 }

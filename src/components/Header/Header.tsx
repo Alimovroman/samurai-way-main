@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import style from './Header.module.css'
-import {NavLink} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 import {HeaderPropsType} from "./HeaderContainer";
 
 const Header: FC<HeaderPropsType> = (props) => {
@@ -16,7 +16,9 @@ const Header: FC<HeaderPropsType> = (props) => {
                 {props.isAuth
                     ? <div className={style.userIsOnline}>
                         <img src={props.userPhoto!} alt={'avatar'}/>
-                        {props.login}</div>
+                        {props.login}
+                        <button onClick={props.logout} className={style.logout}>Logout</button>
+                    </div>
                     : <NavLink to={'/login'}>Login</NavLink>
                 }
             </div>

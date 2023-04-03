@@ -24,7 +24,7 @@ const authReducer = (state = initialState, action: ActionType): InitialStateType
             return {
                 ...state,
                 ...action.payload.data,
-                isAuth: true
+                isAuth: action.payload.isAuth
             }
 
         case "SET-USER-PHOTO":
@@ -39,11 +39,16 @@ const authReducer = (state = initialState, action: ActionType): InitialStateType
 }
 
 type SetAuthType = ReturnType<typeof setAuth>
-export const setAuth = (id: number, email: string, login: string) => {
+export const setAuth = (id: number | null,
+                        email: string | null,
+                        login: string | null,
+                        isAuth: boolean
+) => {
     return {
         type: 'SET-AUTH',
         payload: {
-            data: {id, email, login}
+            data: {id, email, login},
+            isAuth
         }
     } as const
 }
@@ -62,7 +67,7 @@ export const getAuth = () => (dispatch: Dispatch) => {
     authApi.getAuthMe().then(response => {
         if (response.resultCode === 0) {
             const {id, email, login} = response.data
-            dispatch(setAuth(id, email, login))
+            dispatch(setAuth(id, email, login, true))
 
             authApi.getPhotoMe(id).then(resp => {
                 dispatch(setUserPhoto(resp.photos.small))
@@ -70,4 +75,24 @@ export const getAuth = () => (dispatch: Dispatch) => {
         }
     })
 }
+export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
+    authApi.login(email, password, rememberMe)
+        .then(res => {
+            if (res.resultCode === 0) {
+
+                 // @ts-ignore
+                dispatch(getAuth())
+            }
+        })
+}
+export const logout = () => (dispatch: Dispatch) => {
+    authApi.logout()
+        .then(res => {
+            if (res.resultCode === 0) {
+                dispatch(setAuth(null, null, null, false))
+            }
+        })
+}
+
+
 export default authReducer

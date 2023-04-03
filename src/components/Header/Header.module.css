@@ -6,18 +6,24 @@
     display: flex;
     justify-content: space-between;
 }
+
 .logo {
     width: 50px;
 }
+
 .authBlock {
     display: flex;
 }
+
 .userIsOnline {
     display: flex;
     align-items: center;
-    width: 150px;
     justify-content: space-between;
+}
+.logout {
+    margin-left: 10px;
 }
 .userIsOnline img {
     width: 40px;
+    margin-right: 10px;
 }

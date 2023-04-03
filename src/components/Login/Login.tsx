@@ -1,11 +1,19 @@
 import React, {FC} from 'react';
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Input} from "../common/FormsControl/FormControls";
-import {maxLength, minLength, required} from "../../utils/validators/validators";
+import LoginReduxForm, {LoginFormDataType} from "./LoginForm";
+import {connect} from "react-redux";
+import {login, logout} from "../../redux/auth-reducer";
+import {AppStateType} from "../../redux/redux-store";
+import {Redirect} from "react-router-dom";
 
-const Login = () => {
-    const submit = (formData: FormDataType) => {
-        console.log(formData)
+const Login: FC<MapDispatchToPropsType & MapStateToPropsType> = ({login, isAuth}) => {
+    const submit = (formData: LoginFormDataType) => {
+        const {email, password, rememberMe} = formData
+        login(email, password, rememberMe)
+
+    }
+    console.log(isAuth)
+    if (isAuth) {
+        return <Redirect to={'profile'}/>
     }
     return (
         <div>
@@ -14,34 +22,18 @@ const Login = () => {
         </div>
     );
 };
-const maxLengthPost = maxLength(30)
-const minLengthPost = minLength(5)
 
-type FormDataType = {
-    login: string
-    password: string
-    rememberMe: boolean
-}
-const LoginForm: FC<InjectedFormProps<FormDataType>> = (props) => {
-    return (
-        <form onSubmit={props.handleSubmit }>
-            <div>
-                <Field placeholder={'Login'} name={'login'} component={Input} validate={[required, maxLengthPost, minLengthPost]} />
-            </div>
-            <div>
-                <Field placeholder={'password'} name={'password'} component={Input} validate={[required, maxLengthPost, minLengthPost]} />
-            </div>
-            <div>
-                <Field type={"checkbox"} name={"rememberMe"} component={Input}/> remember me
-            </div>
-            <div>
-                <button>Send</button>
-            </div>
-        </form>
-    )
-}
-const LoginReduxForm = reduxForm<FormDataType>({
-    form: 'login'
-})(LoginForm)
 
-export default Login;
+type MapDispatchToPropsType = {
+    login: (email: string, password: string, rememberMe: boolean) => void
+    logout: () => void
+}
+type MapStateToPropsType = {
+    isAuth: boolean
+}
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+}
+export default connect(mapStateToProps, {login, logout})(Login);
