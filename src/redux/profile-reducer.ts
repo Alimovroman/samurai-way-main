@@ -6,7 +6,6 @@ const ADD_POST = "ADD-POST"
 const ADD_TEXT_IN_POST = 'ADD-TEXT-IN-POST'
 
 export type AddPostACType = ReturnType<typeof addPostAction>
-export type AddTextInPostACType = ReturnType<typeof addTextInPostAction>
 export type SetUserProfileACType = ReturnType<typeof setUserProfile>
 export type SetUserStatusACType = ReturnType<typeof setUserStatus>
 
@@ -17,7 +16,6 @@ export type PostType = {
 }
 export type ProfilePageType = {
     postData: Array<PostType>
-    textPost: string
     userProfile: UserProfileType
     status: string
 
@@ -50,30 +48,24 @@ const initialState: ProfilePageType = {
         {id: 4, message: 'yo yo yo', counter: 13},
         {id: 5, message: 'yuck', counter: 23},
     ],
-    textPost: '',
     userProfile: null,
     status: ''
 
 
 }
-type ActionType = AddPostACType | AddTextInPostACType | SetUserProfileACType | SetUserStatusACType
+type ActionType = AddPostACType  | SetUserProfileACType | SetUserStatusACType
 
 const profileReducer = (state  = initialState, action: ActionType) => {
     switch (action.type) {
         case ADD_POST:
             const newPost: PostType = {
-                id: 6, message: state.textPost, counter: 0
+                id: 6, message: action.payload.post, counter: 0
             }
             // state.textPost = ''
             return {
                 ...state,
                 textPost: '',
                 postData: [...state.postData, newPost]
-            }
-        case ADD_TEXT_IN_POST:
-            return {
-                ...state,
-                textPost: action.text
             }
         case "SET-USER-PROFILE":
             return {
@@ -92,9 +84,13 @@ const profileReducer = (state  = initialState, action: ActionType) => {
 
 export default profileReducer
 
-export const addPostAction = () => ({type: ADD_POST} as const)
+export const addPostAction = (post: string) => ({
+    type: ADD_POST,
+    payload: {
+        post
+    }
+} as const)
 
-export const addTextInPostAction = (text: string) => ({type: ADD_TEXT_IN_POST, text} as const)
 export const setUserProfile = (userProfile: UserProfileType) => ({type: 'SET-USER-PROFILE', userProfile} as const)
 export const setUserStatus = (status: string) => ({type: 'SET-USER-STATUS', payload: {status}} as const)
 

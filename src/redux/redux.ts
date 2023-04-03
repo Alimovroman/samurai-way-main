@@ -1,5 +1,5 @@
-import profileReducer, {AddPostACType, AddTextInPostACType} from "./profile-reducer";
-import dialogReducer, {AddMessageACType, AddTextInMessageACType} from "./dialog-reducer";
+import profileReducer, {AddPostACType} from "./profile-reducer";
+import dialogReducer, {AddMessageACType} from "./dialog-reducer";
 import sideBarReducer from "./sideBar-reducer";
 
 type PostType = {
@@ -23,7 +23,7 @@ type FriendsSideBarType = {
     name: string
     avatar: string
 }
-type ActionType = AddPostACType | AddTextInPostACType | AddMessageACType | AddTextInMessageACType
+type ActionType = AddPostACType  | AddMessageACType
 //     {
 //     type: 'ADD-POST' | 'ADD-TEXT-IN-POST' | 'ADD-MESSAGE' | 'ADD-TEXT-IN-MESSAGE'
 //     text?: string
