@@ -1,6 +1,7 @@
 import {PhotosType} from "./users-reducer";
 import {Dispatch} from "redux";
 import {profileApi} from "../api/api";
+import {AppThunk} from "./redux-store";
 
 const ADD_POST = "ADD-POST"
 const ADD_TEXT_IN_POST = 'ADD-TEXT-IN-POST'
@@ -53,9 +54,9 @@ const initialState: ProfilePageType = {
 
 
 }
-type ActionType = AddPostACType  | SetUserProfileACType | SetUserStatusACType
+export type ProfileActionsType = AddPostACType  | SetUserProfileACType | SetUserStatusACType
 
-const profileReducer = (state  = initialState, action: ActionType) => {
+const profileReducer = (state  = initialState, action: ProfileActionsType) => {
     switch (action.type) {
         case ADD_POST:
             const newPost: PostType = {
@@ -95,20 +96,20 @@ export const setUserProfile = (userProfile: UserProfileType) => ({type: 'SET-USE
 export const setUserStatus = (status: string) => ({type: 'SET-USER-STATUS', payload: {status}} as const)
 
 
-export const getProfile = (userId: string) => (dispatch: Dispatch) => {
+export const getProfile = (userId: string): AppThunk => (dispatch) => {
     profileApi.getProfile(userId).then(response => {
         dispatch(setUserProfile(response.data))
     })
 }
 
-export const getStatus = (userId: string) => (dispatch: Dispatch) => {
+export const getStatus = (userId: string): AppThunk => (dispatch) => {
     profileApi.getStatus('6990')
         .then(response => {
         dispatch(setUserStatus(response.data))
     })
 }
 
-export const updateStatus = (newStatus: string) => (dispatch: Dispatch) => {
+export const updateStatus = (newStatus: string): AppThunk => (dispatch) => {
     profileApi.updateStatus(newStatus)
         .then(response => {
         if (response.data.resultCode === 0 ) {

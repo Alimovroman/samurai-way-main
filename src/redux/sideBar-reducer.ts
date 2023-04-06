@@ -1,4 +1,4 @@
-type ActionType = {type: ''}
+export type SidebarActionsType = {type: ''}
 export type FriendsSideBarType = {
     id: number
     name: string
@@ -28,7 +28,7 @@ const initialState: SideBarType = {
     ]
 }
 
-const sideBarReducer = (state = initialState , action: ActionType) => {
+const sideBarReducer = (state = initialState , action: SidebarActionsType) => {
     switch (action.type) {
         default:
             return state

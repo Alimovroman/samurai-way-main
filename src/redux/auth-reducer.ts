@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
 import {authApi} from "../api/api";
 import {stopSubmit} from "redux-form";
+import {AppThunk} from "./redux-store";
 
 export type InitialStateType = {
     id: null | number
@@ -16,9 +17,9 @@ const initialState: InitialStateType = {
     userPhoto: null,
     isAuth: false
 }
-type ActionType = SetAuthType | SetUserPhotoType
+export type AuthActionsType = SetAuthType | SetUserPhotoType
 
-const authReducer = (state = initialState, action: ActionType): InitialStateType => {
+const authReducer = (state = initialState, action: AuthActionsType): InitialStateType => {
     switch (action.type) {
 
         case "SET-AUTH":
@@ -64,7 +65,7 @@ export const setUserPhoto = (photo: string) => {
     } as const
 }
 
-export const getAuth = () => (dispatch: Dispatch) => {
+export const getAuth = (): AppThunk => (dispatch) => {
     authApi.getAuthMe().then(response => {
         if (response.resultCode === 0) {
             const {id, email, login} = response.data
@@ -76,7 +77,7 @@ export const getAuth = () => (dispatch: Dispatch) => {
         }
     })
 }
-export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
+export const login = (email: string, password: string, rememberMe: boolean): AppThunk => (dispatch) => {
     authApi.login(email, password, rememberMe)
         .then(res => {
             if (res.resultCode === 0) {
@@ -87,7 +88,7 @@ export const login = (email: string, password: string, rememberMe: boolean) => (
             }
         })
 }
-export const logout = () => (dispatch: Dispatch) => {
+export const logout = (): AppThunk => (dispatch) => {
     authApi.logout()
         .then(res => {
             if (res.resultCode === 0) {

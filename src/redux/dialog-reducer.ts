@@ -17,7 +17,7 @@ export type DialogsType = {
     dialogsData: Array<DialogType>
     messagesData: Array<MessageType>
 }
-type ActionType = AddMessageACType
+export type DialogActionsType = AddMessageACType
 
 const initialState: DialogsType = {
     dialogsData: [
@@ -36,7 +36,7 @@ const initialState: DialogsType = {
     ],
 }
 
-const dialogReducer = (state = initialState, action: ActionType): DialogsType => {
+const dialogReducer = (state = initialState, action: DialogActionsType): DialogsType => {
     switch (action.type) {
         case ADD_MESSAGE:
             const newMessage: MessageType = {
