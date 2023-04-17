@@ -63,7 +63,6 @@ const ProfileStatus: FC<PropsType> = (props) => {
     const [editMode, setEditMode] = useState(false)
     const [statusValue, setStatusValue] = useState(props.status)
 
-
     const activateEditMode = () => {
         setEditMode(true)
     }
@@ -73,35 +72,29 @@ const ProfileStatus: FC<PropsType> = (props) => {
     }
     const changeValueStatus = (e: ChangeEvent<HTMLInputElement>) => {
         setStatusValue(e.currentTarget.value)
-
-
     }
 
-    // useEffect(() => {
-    //     if(prevProps.status !== statusValue) {
-    //                 setState({
-    //                     statusValue: prevProps.status
-    //                 })
-    //             }
-    // }, [])
+    useEffect(() => {
+        setStatusValue(props.status)
+    }, [props.status])
 
-        return (
-            <div>
-                {!editMode &&
-                    <div>
-                        <span onDoubleClick={activateEditMode}>{props.status || 'No Status'}</span>
-                    </div>
-                }
-                {editMode &&
-                    <div>
-                        <input  onBlur={deactivateEditMode}
-                                onChange={changeValueStatus}
-                                value={statusValue}
-                                autoFocus={true}/>
-                    </div>
-                }
-            </div>
-        );
+    return (
+        <div>
+            {!editMode &&
+                <div>
+                    <span onDoubleClick={activateEditMode}>{props.status || 'No Status'}</span>
+                </div>
+            }
+            {editMode &&
+                <div>
+                    <input onBlur={deactivateEditMode}
+                           onChange={changeValueStatus}
+                           value={statusValue}
+                           autoFocus={true}/>
+                </div>
+            }
+        </div>
+    );
 }
 
 export default ProfileStatus;
