@@ -24,8 +24,8 @@ export type ProfilePageType = {
 export type ContactsType = {
     facebook: null | string
     github: null | string
-    instagram: null |string
-    mainLink:  null | string
+    instagram: null | string
+    mainLink: null | string
     twitter: null | string
     vk: null | string
     website: null | string
@@ -33,7 +33,7 @@ export type ContactsType = {
 }
 export type UserProfileType = null | {
     aboutMe: string | null
-    contacts : ContactsType
+    contacts: ContactsType
     fullName: string
     lookingForAJob: boolean
     lookingForAJobDescription: string | null
@@ -51,22 +51,28 @@ const initialState: ProfilePageType = {
     ],
     userProfile: null,
     status: ''
-
-
 }
-export type ProfileActionsType = AddPostACType  | SetUserProfileACType | SetUserStatusACType
+export type ProfileActionsType =
+    | AddPostACType
+    | SetUserProfileACType
+    | SetUserStatusACType
+    | ReturnType<typeof deletePostAC>
 
-const profileReducer = (state  = initialState, action: ProfileActionsType) => {
+const profileReducer = (state = initialState, action: ProfileActionsType) => {
     switch (action.type) {
         case ADD_POST:
             const newPost: PostType = {
                 id: 6, message: action.payload.post, counter: 0
             }
-            // state.textPost = ''
             return {
                 ...state,
                 textPost: '',
                 postData: [...state.postData, newPost]
+            }
+        case "PROFILE-REDUCER/DELETE-POST":
+            return {
+                ...state,
+                postData: state.postData.filter(p => p.id !== action.payload.id )
             }
         case "SET-USER-PROFILE":
             return {
@@ -91,6 +97,7 @@ export const addPostAction = (post: string) => ({
         post
     }
 } as const)
+export const deletePostAC = (id: number) => ({type: 'PROFILE-REDUCER/DELETE-POST', payload: {id}} as const)
 
 export const setUserProfile = (userProfile: UserProfileType) => ({type: 'SET-USER-PROFILE', userProfile} as const)
 export const setUserStatus = (status: string) => ({type: 'SET-USER-STATUS', payload: {status}} as const)
@@ -105,16 +112,16 @@ export const getProfile = (userId: string): AppThunk => (dispatch) => {
 export const getStatus = (userId: string): AppThunk => (dispatch) => {
     profileApi.getStatus('6990')
         .then(response => {
-        dispatch(setUserStatus(response.data))
-    })
+            dispatch(setUserStatus(response.data))
+        })
 }
 
 export const updateStatus = (newStatus: string): AppThunk => (dispatch) => {
     profileApi.updateStatus(newStatus)
         .then(response => {
-        if (response.data.resultCode === 0 ) {
-            dispatch(setUserStatus(newStatus))
-        }
-    })
+            if (response.data.resultCode === 0) {
+                dispatch(setUserStatus(newStatus))
+            }
+        })
 }
 
