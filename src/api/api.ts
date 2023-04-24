@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 
 
 const instance = axios.create({
@@ -15,11 +15,11 @@ export const usersApi = {
             .then(response => response.data)
     },
     postFollow (userId: number) {
-        return instance.post(`follow/${userId}`)
+        return instance.post<FolloUnfollowResponse, AxiosResponse<FolloUnfollowResponse>, {userId: number}>(`follow/${userId}`)
             .then(response => response.data)
     },
     deleteFollow (userId: number) {
-        return instance.delete(`follow/${userId}`,)
+        return instance.delete<FolloUnfollowResponse>(`follow/${userId}`,)
             .then(response => response.data)
     }
 }
@@ -53,4 +53,10 @@ export const authApi = {
         return instance.delete(`auth/login`)
             .then(res => res.data)
     }
+}
+
+export type FolloUnfollowResponse = {
+    resultCode: 0 | 1 | 10
+    messages: string[],
+    data: {}
 }

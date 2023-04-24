@@ -3,8 +3,8 @@ import {Dispatch} from "redux";
 import {profileApi} from "../api/api";
 import {AppThunk} from "./redux-store";
 
-const ADD_POST = "ADD-POST"
-const ADD_TEXT_IN_POST = 'ADD-TEXT-IN-POST'
+const ADD_POST = "profile/ADD-POST"
+const ADD_TEXT_IN_POST = 'profile/ADD-TEXT-IN-POST'
 
 export type AddPostACType = ReturnType<typeof addPostAction>
 export type SetUserProfileACType = ReturnType<typeof setUserProfile>
@@ -69,17 +69,17 @@ const profileReducer = (state = initialState, action: ProfileActionsType) => {
                 textPost: '',
                 postData: [...state.postData, newPost]
             }
-        case "PROFILE-REDUCER/DELETE-POST":
+        case "profile/DELETE-POST":
             return {
                 ...state,
-                postData: state.postData.filter(p => p.id !== action.payload.id )
+                postData: state.postData.filter(p => p.id !== action.payload.id)
             }
-        case "SET-USER-PROFILE":
+        case "profile/SET-USER-PROFILE":
             return {
                 ...state,
                 userProfile: action.userProfile
             }
-        case "SET-USER-STATUS":
+        case "profile/SET-USER-STATUS":
             return {
                 ...state,
                 status: action.payload.status
@@ -97,31 +97,31 @@ export const addPostAction = (post: string) => ({
         post
     }
 } as const)
-export const deletePostAC = (id: number) => ({type: 'PROFILE-REDUCER/DELETE-POST', payload: {id}} as const)
+export const deletePostAC = (id: number) => ({type: 'profile/DELETE-POST', payload: {id}} as const)
 
-export const setUserProfile = (userProfile: UserProfileType) => ({type: 'SET-USER-PROFILE', userProfile} as const)
-export const setUserStatus = (status: string) => ({type: 'SET-USER-STATUS', payload: {status}} as const)
+export const setUserProfile = (userProfile: UserProfileType) => ({
+    type: 'profile/SET-USER-PROFILE',
+    userProfile
+} as const)
+export const setUserStatus = (status: string) => ({type: 'profile/SET-USER-STATUS', payload: {status}} as const)
 
 
-export const getProfile = (userId: string): AppThunk => (dispatch) => {
-    profileApi.getProfile(userId).then(response => {
-        dispatch(setUserProfile(response.data))
-    })
+export const getProfile = (userId: string): AppThunk => async (dispatch) => {
+    const response = await profileApi.getProfile(userId)
+    dispatch(setUserProfile(response.data))
+
 }
 
-export const getStatus = (userId: string): AppThunk => (dispatch) => {
-    profileApi.getStatus('6990')
-        .then(response => {
-            dispatch(setUserStatus(response.data))
-        })
+export const getStatus = (userId: string): AppThunk => async (dispatch) => {
+    const response = await profileApi.getStatus('6990')
+    dispatch(setUserStatus(response.data))
+
 }
 
-export const updateStatus = (newStatus: string): AppThunk => (dispatch) => {
-    profileApi.updateStatus(newStatus)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setUserStatus(newStatus))
-            }
-        })
+export const updateStatus = (newStatus: string): AppThunk => async (dispatch) => {
+    const response = await profileApi.updateStatus(newStatus)
+    if (response.data.resultCode === 0) {
+        dispatch(setUserStatus(newStatus))
+    }
 }
 

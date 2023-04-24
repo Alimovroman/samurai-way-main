@@ -36,4 +36,4 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         isAuth: state.auth.isAuth
     }
 }
-export default connect(mapStateToProps, {login, logout})(Login);
+export default      connect(mapStateToProps, {login, logout})(Login);

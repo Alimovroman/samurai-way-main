@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import './App.css';
 import Dialogs from "./components/Dialogs/Dialogs";
 import {Route, withRouter} from "react-router-dom";

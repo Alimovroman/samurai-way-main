@@ -22,14 +22,14 @@ export type AuthActionsType = SetAuthType | SetUserPhotoType
 const authReducer = (state = initialState, action: AuthActionsType): InitialStateType => {
     switch (action.type) {
 
-        case "SET-AUTH":
+        case "auth/SET-AUTH":
             return {
                 ...state,
                 ...action.payload.data,
                 isAuth: action.payload.isAuth
             }
 
-        case "SET-USER-PHOTO":
+        case "auth/SET-USER-PHOTO":
             return {
                 ...state,
                 userPhoto: action.payload.photo
@@ -47,7 +47,7 @@ export const setAuth = (id: number | null,
                         isAuth: boolean
 ) => {
     return {
-        type: 'SET-AUTH',
+        type: 'auth/SET-AUTH',
         payload: {
             data: {id, email, login},
             isAuth
@@ -58,43 +58,42 @@ export const setAuth = (id: number | null,
 type SetUserPhotoType = ReturnType<typeof setUserPhoto>
 export const setUserPhoto = (photo: string) => {
     return {
-        type: 'SET-USER-PHOTO',
+        type: 'auth/SET-USER-PHOTO',
         payload: {
             photo
         }
     } as const
 }
 
-export const getAuth = (): AppThunk => (dispatch) => {
-    authApi.getAuthMe().then(response => {
-        if (response.resultCode === 0) {
-            const {id, email, login} = response.data
-            dispatch(setAuth(id, email, login, true))
+export const getAuth = (): AppThunk => async (dispatch) => {
+    const response = await authApi.getAuthMe()
+    if (response.resultCode === 0) {
+        const {id, email, login} = response.data
+        dispatch(setAuth(id, email, login, true))
 
-            authApi.getPhotoMe(id).then(resp => {
-                dispatch(setUserPhoto(resp.photos.small))
-            })
-        }
-    })
+        const responsePhoto = await authApi.getPhotoMe(id)
+        dispatch(setUserPhoto(responsePhoto.photos.small))
+
+    }
+
 }
-export const login = (email: string, password: string, rememberMe: boolean): AppThunk => (dispatch) => {
-    authApi.login(email, password, rememberMe)
-        .then(res => {
-            if (res.resultCode === 0) {
-                dispatch(getAuth())
-            } else {
-                const message = res.messages.length > 0 ? res.messages : 'Some error'
-                dispatch(stopSubmit("login", {_error: message}))
-            }
-        })
+export const login = (email: string, password: string, rememberMe: boolean): AppThunk => async (dispatch) => {
+    const response = await authApi.login(email, password, rememberMe)
+
+    if (response.resultCode === 0) {
+        dispatch(getAuth())
+    } else {
+        const message = response.messages.length > 0 ? response.messages : 'Some error'
+        dispatch(stopSubmit("login", {_error: message}))
+    }
+
 }
-export const logout = (): AppThunk => (dispatch) => {
-    authApi.logout()
-        .then(res => {
-            if (res.resultCode === 0) {
-                dispatch(setAuth(null, null, null, false))
-            }
-        })
+export const logout = (): AppThunk => async (dispatch) => {
+    const response = await authApi.logout()
+    if (response.resultCode === 0) {
+        dispatch(setAuth(null, null, null, false))
+    }
+
 }
 
 

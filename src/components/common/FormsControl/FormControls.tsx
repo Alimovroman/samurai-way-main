@@ -1,5 +1,7 @@
-import React, {DetailedHTMLProps, FC, HTMLAttributes, ReactNode, TextareaHTMLAttributes} from "react";
+import React, {ComponentType, DetailedHTMLProps, FC, PropsWithChildren, ReactHTMLElement, ReactNode} from "react";
 import style from './FormControls.module.css'
+import {Field, WrappedFieldProps} from "redux-form";
+import {FieldValidatorType, required} from "../../../utils/validators/validators";
 
 const FormControl: FC<Props> = ({
                                     input,
@@ -19,21 +21,11 @@ const FormControl: FC<Props> = ({
 }
 
 type Props = {
-    // input: DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>
     input: DetailedHTMLProps<any, HTMLTextAreaElement>
-
-    // input: {
-    //     name?: string
-    //     onBlur?: () => void
-    //     onChange?: () => void
-    //     onDragStart: () => void
-    //     onDrop: () => void
-    //     onFocus: () => void
-    //     value: string
-    // }
     type: string
     children: ReactNode
     meta: any
+    props: {}
 }
 
 export const TextArea: FC<Props> = (props) => {
@@ -52,5 +44,22 @@ export const Input: FC<Props> = (props) => {
         <FormControl {...props} >
             <input {...input} {...restProps}/>
         </FormControl>
+    )
+}
+
+export const createField = (placeholder: string | null,
+                            name: string,
+                            component: React.FC<Props & any>,
+                            validator: FieldValidatorType[],
+                            text: string,
+                            props: {}) => {
+    return (
+        <div>
+            <Field placeholder={placeholder} name={name}
+                   component={component}
+                   validate={validator}
+                   {...props}
+            />{text}
+        </div>
     )
 }

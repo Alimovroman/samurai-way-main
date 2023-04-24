@@ -1,0 +1,8 @@
+.pages {
+    display: flex;
+    flex-wrap: wrap;
+}
+.currentPage {
+    color: #b0608a;
+    font-weight: bold;
+}

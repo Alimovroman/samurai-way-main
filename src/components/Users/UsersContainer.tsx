@@ -21,11 +21,13 @@ import {
 
 class UsersContainer extends React.Component<UsersPropsType> {
     setCurrentPage = (page: number) => {
-        this.props.getUserThunkCreator(page, this.props.pageSizeUsers)
+        const {pageSizeUsers} = this.props
+        this.props.getUserThunkCreator(page, pageSizeUsers)
     }
 
     componentDidMount() {
-        this.props.getUserThunkCreator(this.props.currenPage, this.props.pageSizeUsers)
+        const {currenPage, pageSizeUsers} = this.props
+        this.props.getUserThunkCreator(currenPage, pageSizeUsers)
 
     }
 

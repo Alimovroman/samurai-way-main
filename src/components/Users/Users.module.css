@@ -1,15 +1,6 @@
 .root {
     margin-top: 15px;
 }
-.pages {
-    display: flex;
-    flex-wrap: wrap;
-
-}
-.currentPage {
-    color: #b0608a;
-    font-weight: bold;
-}
 .user {
     display: flex;
     margin-bottom: 20px;
@@ -23,7 +14,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    /*width: 100%;*/
     border: 1px solid #333333;
     border-radius: 10px;
     width: 60%;
