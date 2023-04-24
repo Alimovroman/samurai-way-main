@@ -10,13 +10,13 @@ type ProfilePropsType = {
     status: string
     updateStatus: (status: string) => void
 }
-const Profile: FC<ProfilePropsType> = (props) => {
+const Profile: FC<ProfilePropsType> = React.memo((props) => {
     return (
         <div className={style.profile}>
             <ProfileInfo userProfile={props.userProfile} status={props.status} updateStatus={props.updateStatus}/>
             <MyPostsContainer/>
         </div>
     );
-};
+});
 
 export default Profile;

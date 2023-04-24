@@ -7,10 +7,12 @@ import {maxLength, minLength, required} from "../../../utils/validators/validato
 import {TextArea} from "../../common/FormsControl/FormControls";
 
 
-const MyPosts: FC<MyPostsPropsType> = ({
-                                           postData,
-                                           addPost,
-                                       }) => {
+const MyPosts = React.memo((props: MyPostsPropsType) => {
+
+    let {
+        postData,
+        addPost,
+    } = props;
 
     const addNewPost = (formData: FormDataType) => {
         console.log(formData)
@@ -28,7 +30,7 @@ const MyPosts: FC<MyPostsPropsType> = ({
             </div>
         </div>
     );
-};
+})
 
 const maxLengthPost = maxLength(30)
 const minLengthPost = minLength(5)
