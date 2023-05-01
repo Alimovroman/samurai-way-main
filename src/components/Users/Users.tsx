@@ -22,9 +22,10 @@ const Users: FC<PropsType> = (props) => {
     return (
         <div className={style.root}>
             <Paginator currenPage={props.currenPage}
-                       totalUserCount={props.totalUserCount}
+                       totalItemsCount={props.totalUserCount}
                        pageSizeUsers={props.pageSizeUsers}
-                       setCurrentPage={props.setCurrentPage} />
+                       setCurrentPage={props.setCurrentPage}
+            portionSize={10}/>
             {props.users.map(u => <User key={u.id}
                                         user={u}
                                         followingProgress={props.followingProgress}
