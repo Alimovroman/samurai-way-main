@@ -16,7 +16,7 @@ const Paginator: FC<Props> = ({currenPage, totalItemsCount, pageSizeUsers, setCu
     }
 
     const portionsCount = Math.ceil(totalPage / portionSize)
-    const [portionNumber, setPortionNumber] = useState(2)
+    const [portionNumber, setPortionNumber] = useState(1)
     const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
     const rightPortionPageNumber = portionNumber * portionSize
 
