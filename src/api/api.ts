@@ -1,4 +1,5 @@
 import axios, {AxiosResponse} from "axios";
+import {UserProfileType} from "../redux/profile-reducer";
 
 
 const instance = axios.create({
@@ -42,6 +43,9 @@ export const profileApi = {
                 'Content-Type': 'multipart/form-data'
             }
         })
+    },
+    saveProfile: (formData: UserProfileType) => {
+        return instance.put("profile", formData)
     }
 }
 

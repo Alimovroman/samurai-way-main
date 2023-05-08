@@ -1,6 +1,7 @@
 import {PhotosType} from "./users-reducer";
 import {profileApi} from "../api/api";
 import {AppThunk} from "./redux-store";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = "profile/ADD-POST"
 const ADD_TEXT_IN_POST = 'profile/ADD-TEXT-IN-POST'
@@ -124,25 +125,31 @@ export const getProfile = (userId: string): AppThunk => async (dispatch) => {
     dispatch(setUserProfile(response.data))
 
 }
-
 export const getStatus = (userId: string): AppThunk => async (dispatch) => {
     const response = await profileApi.getStatus('6990')
     dispatch(setUserStatus(response.data))
 
 }
-
 export const updateStatus = (newStatus: string): AppThunk => async (dispatch) => {
     const response = await profileApi.updateStatus(newStatus)
     if (response.data.resultCode === 0) {
         dispatch(setUserStatus(newStatus))
     }
 }
-
 export const savePhoto = (photo: File): AppThunk => async (dispatch) => {
     const response = await profileApi.setPhoto(photo)
     if (response.data.resultCode === 0) {
         dispatch(setUserPhotosSuccess(response.data.data.photos))
     }
-
+}
+export const saveProfile = (formData: UserProfileType): AppThunk => async (dispatch, getState) => {
+    const id = getState().auth.id
+    const response = await profileApi.saveProfile(formData)
+    if (response.data.resultCode === 0) {
+         id && dispatch(getProfile(id.toString()))
+    } else {
+        dispatch(stopSubmit("editProfile", {_error: response.data.messages}))
+        return Promise.reject( response.data.messages)
+    }
 }
 

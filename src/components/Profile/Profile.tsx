@@ -11,6 +11,7 @@ type ProfilePropsType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (photo: File) => void
+    saveProfile: (formData: UserProfileType) => Promise<void>
 }
 const Profile: FC<ProfilePropsType> = React.memo((props) => {
     return (
@@ -20,6 +21,7 @@ const Profile: FC<ProfilePropsType> = React.memo((props) => {
                          status={props.status}
                          updateStatus={props.updateStatus}
                          savePhoto={props.savePhoto}
+                         saveProfile={props.saveProfile}
             />
             <MyPostsContainer/>
         </div>
