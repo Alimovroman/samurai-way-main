@@ -4,20 +4,25 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {createField, Input} from "../common/FormsControl/FormControls";
 import style from '../common/FormsControl/FormControls.module.css'
 
+type PropsLoginFormType = {
+    captcha: string | null
+}
 
 export type LoginFormDataType = {
     email: string
     password: string
     rememberMe: boolean
     isAuth: boolean
+    captcha: string | null
 }
-const LoginForm: FC<InjectedFormProps<LoginFormDataType>> = ({handleSubmit, error}) => {
+const LoginForm: FC<InjectedFormProps<LoginFormDataType,  PropsLoginFormType> & PropsLoginFormType> = ({handleSubmit, error, captcha}) => {
     return (
         <form onSubmit={handleSubmit}>
             {createField('Email', 'email', Input, [required], '', {})}
             {createField('Password', 'password', Input, [required], '', {type: 'password'})}
             {createField(null, 'rememberMe', Input, [], 'remember me',  {type: 'checkbox'})}
-
+            {captcha && <img src={captcha}/>}
+            {captcha &&  createField(null, 'captcha', Input, [required], '',  {})}
             {error &&
                 <div className={style.formSummuryError}>
                     {error}
@@ -29,7 +34,7 @@ const LoginForm: FC<InjectedFormProps<LoginFormDataType>> = ({handleSubmit, erro
         </form>
     )
 }
-const LoginReduxForm = reduxForm<LoginFormDataType>({
+const LoginReduxForm = reduxForm<LoginFormDataType, PropsLoginFormType>({
     form: 'login'
 })(LoginForm)
 

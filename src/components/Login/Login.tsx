@@ -5,10 +5,10 @@ import {login, logout} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
 
-const Login: FC<MapDispatchToPropsType & MapStateToPropsType> = ({login, isAuth}) => {
+const Login: FC<MapDispatchToPropsType & MapStateToPropsType> = ({login, isAuth, captcha}) => {
     const submit = (formData: LoginFormDataType) => {
-        const {email, password, rememberMe} = formData
-        login(email, password, rememberMe)
+        const {email, password, rememberMe, captcha} = formData
+        login(email, password, rememberMe, captcha)
 
     }
 
@@ -18,22 +18,24 @@ const Login: FC<MapDispatchToPropsType & MapStateToPropsType> = ({login, isAuth}
     return (
         <div>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={submit}/>
+            <LoginReduxForm onSubmit={submit} captcha={captcha}/>
         </div>
     );
 };
 
 
 type MapDispatchToPropsType = {
-    login: (email: string, password: string, rememberMe: boolean) => void
+    login: (email: string, password: string, rememberMe: boolean, captcha: string | null) => void
     logout: () => void
 }
 type MapStateToPropsType = {
     isAuth: boolean
+    captcha: string | null
 }
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        captcha: state.auth.captcha
     }
 }
 export default      connect(mapStateToProps, {login, logout})(Login);
