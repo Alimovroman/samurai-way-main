@@ -32,7 +32,16 @@ export const profileApi = {
         return instance.get(`profile/status/${userId}`)
     },
     updateStatus: (status: string) => {
-        return instance.put(`/profile/status`, {status})
+        return instance.put(`profile/status`, {status})
+    },
+    setPhoto: (photo: File) => {
+        const formData = new FormData();
+        formData.append("image", photo)
+        return instance.put( `profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 }
 

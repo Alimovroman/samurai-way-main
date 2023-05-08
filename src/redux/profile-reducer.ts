@@ -1,5 +1,4 @@
 import {PhotosType} from "./users-reducer";
-import {Dispatch} from "redux";
 import {profileApi} from "../api/api";
 import {AppThunk} from "./redux-store";
 
@@ -57,6 +56,7 @@ export type ProfileActionsType =
     | SetUserProfileACType
     | SetUserStatusACType
     | ReturnType<typeof deletePostAC>
+    | ReturnType<typeof setUserPhotosSuccess>
 
 const profileReducer = (state = initialState, action: ProfileActionsType) => {
     switch (action.type) {
@@ -84,6 +84,14 @@ const profileReducer = (state = initialState, action: ProfileActionsType) => {
                 ...state,
                 status: action.payload.status
             }
+        case "profile/SET-USER-PHOTO-SUCCESS":
+            return {
+                ...state,
+                userProfile: {
+                    ...state.userProfile,
+                    photos: action.payload.photos
+                } as UserProfileType
+            }
         default:
             return state
     }
@@ -91,6 +99,7 @@ const profileReducer = (state = initialState, action: ProfileActionsType) => {
 
 export default profileReducer
 
+//AC
 export const addPostAction = (post: string) => ({
     type: ADD_POST,
     payload: {
@@ -104,8 +113,12 @@ export const setUserProfile = (userProfile: UserProfileType) => ({
     userProfile
 } as const)
 export const setUserStatus = (status: string) => ({type: 'profile/SET-USER-STATUS', payload: {status}} as const)
+export const setUserPhotosSuccess = (photos: PhotosType) => ({
+    type: 'profile/SET-USER-PHOTO-SUCCESS',
+    payload: {photos}
+} as const)
 
-
+//Thunks
 export const getProfile = (userId: string): AppThunk => async (dispatch) => {
     const response = await profileApi.getProfile(userId)
     dispatch(setUserProfile(response.data))
@@ -123,5 +136,13 @@ export const updateStatus = (newStatus: string): AppThunk => async (dispatch) =>
     if (response.data.resultCode === 0) {
         dispatch(setUserStatus(newStatus))
     }
+}
+
+export const savePhoto = (photo: File): AppThunk => async (dispatch) => {
+    const response = await profileApi.setPhoto(photo)
+    if (response.data.resultCode === 0) {
+        dispatch(setUserPhotosSuccess(response.data.data.photos))
+    }
+
 }
 
