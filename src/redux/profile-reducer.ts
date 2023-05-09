@@ -131,10 +131,15 @@ export const getStatus = (userId: string): AppThunk => async (dispatch) => {
 
 }
 export const updateStatus = (newStatus: string): AppThunk => async (dispatch) => {
-    const response = await profileApi.updateStatus(newStatus)
-    if (response.data.resultCode === 0) {
-        dispatch(setUserStatus(newStatus))
+    try {
+        const response = await profileApi.updateStatus(newStatus)
+        if (response.data.resultCode === 0) {
+            dispatch(setUserStatus(newStatus))
+        }
+    } catch (e) {
+        debugger
     }
+
 }
 export const savePhoto = (photo: File): AppThunk => async (dispatch) => {
     const response = await profileApi.setPhoto(photo)
