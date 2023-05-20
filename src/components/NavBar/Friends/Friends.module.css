@@ -1,3 +1,6 @@
+.friendsBlock {
+    color: #777d74;
+}
 .friends {
     display: flex;
     justify-content: space-around;

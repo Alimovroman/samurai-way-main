@@ -21,16 +21,21 @@ type PropsType = {
 const Users: FC<PropsType> = (props) => {
     return (
         <div className={style.root}>
-            <Paginator currenPage={props.currenPage}
-                       totalItemsCount={props.totalUserCount}
-                       pageSizeUsers={props.pageSizeUsers}
-                       setCurrentPage={props.setCurrentPage}
-            portionSize={10}/>
+
+
             {props.users.map(u => <User key={u.id}
                                         user={u}
                                         followingProgress={props.followingProgress}
                                         unfollowed={props.unfollowed}
                                         followed={props.followed} />)}
+
+            <div className={style.paginatorWrapper}>
+                <Paginator currenPage={props.currenPage}
+                           totalItemsCount={props.totalUserCount}
+                           pageSizeUsers={props.pageSizeUsers}
+                           setCurrentPage={props.setCurrentPage}
+                           portionSize={10}/>
+            </div>
         </div>
     )
 };

@@ -1,8 +1,16 @@
-.messages {
-    flex-basis: 60%;
+.loginBlock {
+    align-self: center;
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+}
+.formBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
 }
 .button {
     margin-left: 10px;

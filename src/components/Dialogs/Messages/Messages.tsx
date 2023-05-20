@@ -42,7 +42,7 @@ const MessageForm: FC<InjectedFormProps<FormDataType>> = (props) => {
                 />
             </div>
             <div>
-                <button>Send</button>
+                <button className={style.button}>Send</button>
             </div>
         </form>
     )

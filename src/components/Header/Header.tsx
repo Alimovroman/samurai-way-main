@@ -17,9 +17,9 @@ const Header: FC<HeaderPropsType> = (props) => {
                     ? <div className={style.userIsOnline}>
                         <img src={props.userPhoto!} alt={'avatar'}/>
                         {props.login}
-                        <button onClick={props.logout} className={style.logout}>Logout</button>
+                        <button onClick={props.logout} className={style.button}>Logout</button>
                     </div>
-                    : <NavLink to={'/login'}>Login</NavLink>
+                    : <NavLink to={'/login'} className={style.button}>Login</NavLink>
                 }
             </div>
         </header>

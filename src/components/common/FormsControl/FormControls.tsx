@@ -54,12 +54,12 @@ export const createField = (placeholder: string | null,
                             text: string,
                             props: {}) => {
     return (
-        <div>
+        <div className={style.fieldWrapper}>
             <Field placeholder={placeholder} name={name}
                    component={component}
                    validate={validator}
                    {...props}
-            />{text}
+            /><span>{text}</span>
         </div>
     )
 }

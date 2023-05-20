@@ -49,7 +49,7 @@ const MessagePostForm: FC<InjectedFormProps<FormDataType>> = (props) => {
                 />
             </div>
             <div>
-                <button>Add post</button>
+                <button className={style.button}>Add post</button>
             </div>
         </form>
     )

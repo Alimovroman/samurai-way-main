@@ -12,7 +12,7 @@ const Post:FC<PostType> = ({message, counter}) => {
             <img src={'https://cs6.pikabu.ru/avatars/398/v398282.jpg?1343863926'} alt={'avatar'} />
             {message}
             <div>
-                <span>like{counter}</span>
+                <span className={style.likes}>like {counter}</span>
             </div>
         </div>
     );

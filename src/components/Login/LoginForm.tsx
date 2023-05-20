@@ -3,6 +3,7 @@ import React, {FC} from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {createField, Input} from "../common/FormsControl/FormControls";
 import style from '../common/FormsControl/FormControls.module.css'
+import s from './Login.module.css'
 
 type PropsLoginFormType = {
     captcha: string | null
@@ -17,7 +18,7 @@ export type LoginFormDataType = {
 }
 const LoginForm: FC<InjectedFormProps<LoginFormDataType,  PropsLoginFormType> & PropsLoginFormType> = ({handleSubmit, error, captcha}) => {
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={s.formBlock}>
             {createField('Email', 'email', Input, [required], '', {})}
             {createField('Password', 'password', Input, [required], '', {type: 'password'})}
             {createField(null, 'rememberMe', Input, [], 'remember me',  {type: 'checkbox'})}
@@ -29,7 +30,7 @@ const LoginForm: FC<InjectedFormProps<LoginFormDataType,  PropsLoginFormType> & 
                 </div>
             }
             <div>
-                <button>Login</button>
+                <button className={s.button}>Login</button>
             </div>
         </form>
     )

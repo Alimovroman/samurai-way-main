@@ -1,7 +1,11 @@
 .item {
-    color: lightskyblue;
+    color: #777d74;
+    margin-top: 20px;
 }
 .item img {
     width: 50px;
     border-radius: 50px;
+}
+.likes {
+    color: #50b5ff;
 }

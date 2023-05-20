@@ -40,22 +40,23 @@ class App extends React.Component<AppPropsType> {
             return <Preloader/>
         }
         return (
-
             <div className="app">
                 <HeaderContainer/>
                 <NavBarContainer/>
                 <div className={'content'}>
-                    <Switch>
-                        <Route exact render={() => <Redirect to={'/profile'}/>} path={'/'}/>
-                        <Route render={withSuspense(ProfileContainer)} path={'/profile/:userId?'}/>
-                        <Route render={withSuspense(Dialogs)} path={'/message'}/>
-                        <Route render={() => <UsersContainer/>} path={'/users'}/>
-                        <Route component={News} path={'/news'}/>
-                        <Route component={Music} path={'/music'}/>
-                        <Route component={Settings} path={'/settings'}/>
-                        <Route component={Login} path={'/login'}/>
-                        <Route path={'*'} render={() => <div>404 Not Found</div>}/>
-                    </Switch>
+                    <div className={'wrapperContent'}>
+                        <Switch>
+                            <Route exact render={() => <Redirect to={'/profile'}/>} path={'/'}/>
+                            <Route render={withSuspense(ProfileContainer)} path={'/profile/:userId?'}/>
+                            <Route render={withSuspense(Dialogs)} path={'/message'}/>
+                            <Route render={() => <UsersContainer/>} path={'/users'}/>
+                            <Route component={News} path={'/news'}/>
+                            <Route component={Music} path={'/music'}/>
+                            <Route component={Settings} path={'/settings'}/>
+                            <Route component={Login} path={'/login'}/>
+                            <Route path={'*'} render={() => <div>404 Not Found</div>}/>
+                        </Switch>
+                    </div>
                 </div>
             </div>
         )

@@ -11,22 +11,22 @@ type NavbarPropsType = MapStateToPropsType & MapDispatchToPropsType
 const NavBar: FC<NavbarPropsType> = ({friends}) => {
     return (
         <nav className={style.nav}>
-            <div>
+            <div className={style.itemContainer}>
                 <NavLink className={style.item} activeClassName={style.active} to={'/profile'}>Profile</NavLink>
             </div>
-            <div>
+            <div className={style.itemContainer}>
                 <NavLink className={style.item} activeClassName={style.active} to={'/message'}>Message</NavLink>
             </div>
-            <div>
+            <div className={style.itemContainer}>
                 <NavLink className={style.item} activeClassName={style.active} to={'/users'}>Users</NavLink>
             </div>
-            <div>
+            <div className={style.itemContainer}>
                 <NavLink className={style.item} activeClassName={style.active} to={'/news'}>News</NavLink>
             </div>
-            <div>
+            <div className={style.itemContainer}>
                 <NavLink className={style.item} activeClassName={style.active} to={'/music'}>Music</NavLink>
             </div>
-            <div>
+            <div className={style.itemContainer}>
                 <NavLink className={style.item} activeClassName={style.active} to={'/settings'}>Settings</NavLink>
             </div>
             <Friends friends={friends}/>

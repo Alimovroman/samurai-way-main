@@ -1,6 +1,7 @@
 .root {
     margin-top: 15px;
 }
+
 .user {
     display: flex;
     margin-bottom: 20px;
@@ -19,4 +20,7 @@
     border-radius: 10px;
     width: 60%;
     margin-left: 20px;
+}
+.paginatorWrapper {
+    margin-top: 40px;
 }

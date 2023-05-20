@@ -49,7 +49,7 @@ const ProfileInfo: FC<PropsType> = ({
                 <div>
                     <img src={userProfile.photos.large || avatar} alt={'photos'}/>
                     <div>
-                        {isOwner && <input type={"file"} onChange={mainFotoSelected}/>}
+                        {isOwner && <input type={"file"} onChange={mainFotoSelected} />}
                     </div>
                     <ProfileStatus status={status} updateStatus={updateStatus}/>
                     {editMode
@@ -74,7 +74,7 @@ const ProfileData: FC<ProfileDataPropsType> = ({userProfile, isOwner, changeEdit
     return (
         <div>
             {isOwner && <div>
-                <button onClick={() => changeEditMode(true)}>Edit</button>
+                <button onClick={() => changeEditMode(true)} className={style.button}>Edit</button>
             </div>
             }
 
@@ -106,7 +106,7 @@ type ContactPropsType = {
 export const Contact: FC<ContactPropsType> = ({contactTitle, contactValue}) => {
     return (
         <div>
-            <b>{contactTitle}</b>: {contactValue}
+            {contactValue ? <><b>{contactTitle}</b>: {contactValue}</> : null }
         </div>
     )
 }

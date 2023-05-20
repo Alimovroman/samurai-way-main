@@ -1,3 +1,20 @@
 .banner {
     height: 300px;
 }
+.button {
+    margin-left: 10px;
+    color: #50b5ff;
+    background-color: rgb(226, 239, 252);
+    opacity: 1;
+    box-shadow: unset;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    /*width: 70px;*/
+    padding: 8px 15px;
+    /*height: 30px;*/
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

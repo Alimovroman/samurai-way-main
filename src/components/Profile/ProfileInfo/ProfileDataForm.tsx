@@ -1,6 +1,5 @@
 import React, {FC} from "react";
-import {ContactsType, UserProfileType} from "../../../redux/profile-reducer";
-import {Contact, ProfileDataPropsType} from "./ProfileInfo";
+import { UserProfileType} from "../../../redux/profile-reducer";
 import {createField, Input, TextArea} from "../../common/FormsControl/FormControls";
 import {InjectedFormProps, reduxForm} from "redux-form";
 import style from "../../common/FormsControl/FormControls.module.css";
@@ -19,7 +18,7 @@ const ProfileDataForm: FC<InjectedFormProps<UserProfileType, ProfileDataFormType
     }
     return (
         <form onSubmit={handleSubmit}>
-            <button>Save</button>
+            <button className={style.button}>Save</button>
             {error &&
                 <div className={style.formSummuryError}>
                     {error}

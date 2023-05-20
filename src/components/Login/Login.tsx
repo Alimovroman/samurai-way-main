@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {login, logout} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
+import style from './Login.module.css'
 
 const Login: FC<MapDispatchToPropsType & MapStateToPropsType> = ({login, isAuth, captcha}) => {
     const submit = (formData: LoginFormDataType) => {
@@ -16,7 +17,7 @@ const Login: FC<MapDispatchToPropsType & MapStateToPropsType> = ({login, isAuth,
         return <Redirect to={'profile'}/>
     }
     return (
-        <div>
+        <div className={style.loginBlock}>
             <h1>Login</h1>
             <LoginReduxForm onSubmit={submit} captcha={captcha}/>
         </div>

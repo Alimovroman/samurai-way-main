@@ -1,11 +1,50 @@
 .nav {
-    background-color: darkcyan;
-    flex-basis: 20%;
+    min-height: 90vh;
+    flex-basis: 15%;
+
+    /*display: block;*/
+    /*position: fixed;*/
+    /*width: 100%;*/
+    /*max-width: 14rem;*/
+    top: 4.5rem;
+    bottom: 0;
+    margin: 0;
+    /*z-index: 910;*/
+    background-color: #fff;
+    transition:all 400ms ease;
+    transition-duration: 400ms;
+    transition-timing-function: ease;
+    box-shadow: 0 0 30px rgba(80,181,255,.05);
+}
+.itemContainer {
+    width: 90%;
+    height: 40px;
+    display: flex;
+    margin-left: 10px;
+
 }
 .item {
-    color: white;
+    color: #777d74;
     text-decoration: none;
+    /*position: relative;*/
+    transition-property: background-color,color,border-radius,transform,opacity,padding-left,padding-right;
+    transition-duration: 400ms;
+    transition-timing-function: ease;
+    margin-top: 2px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-self: center;
+    padding-left: 10px;
+    border-radius: 10px;
+
 }
 .active {
-    color: gold;
+    color: #50b5ff;
+    background-color: rgb(226, 239, 252);
+    transform: translateX(0);
+    opacity: 1;
+    box-shadow: unset;
 }

@@ -40,7 +40,7 @@ export type UsersActionsType = ReturnType<typeof acceptUnfollowed>
 
 const initialState: UsersStateType = {
     users: [],
-    pageSizeUsers: 100,
+    pageSizeUsers: 10,
     totalUserCount: 0,
     currentPage: 1,
     isFetching: false,

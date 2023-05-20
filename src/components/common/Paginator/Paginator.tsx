@@ -23,18 +23,22 @@ const Paginator: FC<Props> = ({currenPage, totalItemsCount, pageSizeUsers, setCu
     return (
         <div className={style.pages}>
             {portionNumber > 1 &&
-                <button onClick={() => setPortionNumber(portionNumber - 1)}>prev</button>}
+                <button onClick={() => setPortionNumber(portionNumber - 1)} className={style.button}>
+                    prev
+                </button>}
             {pages
                 .filter((p) => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                 .map((p, i) => {
                     return <span key={i}
                                  onClick={() => setCurrentPage(p)}
-                                 className={p === currenPage ? style.currentPage : ''}>
+                                 className={p === currenPage ? style.currentPage : style.page}>
                             {p}
                         </span>
                 })}
             {portionsCount > portionNumber &&
-                <button onClick={() => setPortionNumber(portionNumber + 1)}>prev</button>}
+                <button onClick={() => setPortionNumber(portionNumber + 1)} className={style.button}>
+                    prev
+                </button>}
         </div>
     );
 };
