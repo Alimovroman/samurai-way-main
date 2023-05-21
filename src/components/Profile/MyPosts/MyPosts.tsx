@@ -20,7 +20,7 @@ const MyPosts = React.memo((props: MyPostsPropsType) => {
     }
 
     return (
-        <div>
+        <div className={style.myPostsBlock}>
             <div>
                 My posts
             </div>
@@ -40,12 +40,13 @@ type FormDataType = {
 }
 const MessagePostForm: FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={props.handleSubmit} className={style.postForm}>
             <div>
                 <Field component={TextArea}
                        name={"newPost"}
                        placeholder={"Enter your post"}
                        validate={[required, maxLengthPost, minLengthPost]}
+                       className={style.fieldPost}
                 />
             </div>
             <div>

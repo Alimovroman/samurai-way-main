@@ -1,11 +1,25 @@
-.userMessage {
+.userMessageContainer {
     display: flex;
     justify-content: flex-end;
+    padding-right: 20px;
+
+}
+.friendMessageContainer {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
 }
 .text {
+    width: auto;
+    padding: 0.625rem 1rem;
+    background-color: #fff;
+    border-radius: 0.625rem;
 
-    text-align: center;
-    border: antiquewhite 1px solid;
-    width: 150px;
-    border-radius: 10px;
+}
+
+.userMessage {
+    border-radius: 0.625rem;
+    background-color: #50b5ff;
+    color: #fff;
+    padding: 0.625rem 1rem;
 }

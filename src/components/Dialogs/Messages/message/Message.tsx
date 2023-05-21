@@ -8,8 +8,8 @@ export type MessageTypeProps = {
 }
 const Message:FC<MessageTypeProps> = ({nameStyle, text}) => {
     return (
-        <div className={nameStyle === 'friend' ? style.friendMessage : style.userMessage}>
-            <div className={ style.text }>
+        <div className={nameStyle === 'friend' ? style.friendMessageContainer : style.userMessageContainer}>
+            <div className={nameStyle === 'friend' ? style.text : style.userMessage }>
                 {text}
             </div>
 

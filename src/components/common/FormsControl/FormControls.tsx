@@ -58,8 +58,9 @@ export const createField = (placeholder: string | null,
             <Field placeholder={placeholder} name={name}
                    component={component}
                    validate={validator}
+                   className={style.field}
                    {...props}
-            /><span>{text}</span>
+            /><span className={style.textBeforeInput}>{text}</span>
         </div>
     )
 }

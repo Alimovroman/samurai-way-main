@@ -1,13 +1,22 @@
 .dialog {
     display: flex;
     align-items: center;
+    margin-bottom: 15px;
+
 }
-.dialog a{
+
+a{
     text-decoration: none;
+    color: #60658a;
+    font-weight: 500;
+
 }
 .active {
-    color: gold;
+    /*background-color: #dcf0ff;*/
+    color: #50b5ff;
 }
 .avatar {
     width: 50px;
+    margin-right: 15px;
+    border-radius: 50%;
 }

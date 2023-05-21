@@ -7,15 +7,16 @@ const Header: FC<HeaderPropsType> = (props) => {
 
     return (
         <header className={style.header}>
-            <div>
+            <div className={style.logoWrapper}>
                 <img className={style.logo}
-                     src={'https://sun9-82.userapi.com/s/v1/ig2/LLdk_N-fVpPSiwyNpF7h-B585nSmRYtB1ZNiNFAFfx6o0bUNC94OjOlbRChB9XxaKUIqEgEvVVEwUyFvrX6gSH0s.jpg?size=200x200&quality=95&crop=0,0,729,729&ava=1'}
+                     src={'https://mobimg.b-cdn.net/v3/fetch/03/03dbc3fd2db7ebe89e961a1a547614bf.jpeg'}
                      alt={'logo'}/>
+                <span>Social network</span>
             </div>
             <div className={style.authBlock}>
                 {props.isAuth
                     ? <div className={style.userIsOnline}>
-                        <img src={props.userPhoto!} alt={'avatar'}/>
+                        <img src={props.userPhoto!} alt={'avatar'} className={style.avatar}/>
                         {props.login}
                         <button onClick={props.logout} className={style.button}>Logout</button>
                     </div>

@@ -17,10 +17,17 @@
     transition: all .3s ease-in-out;
     box-shadow: 0 10px 30px rgba(0,0,0,.05);
     padding: 5px 15px;
+    color: #3f414d;
 }
-
+.logoWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 .logo {
-    width: 50px;
+    width: 80px;
+    margin-right: 20px;
 }
 
 .authBlock {
@@ -32,6 +39,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.avatar {
+    border-radius: 50%;
 }
 .button {
     margin-left: 10px;

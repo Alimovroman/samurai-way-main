@@ -4,13 +4,12 @@ import DialogItems from "./DialogItems/DialogItems";
 import MessagesContainer from "./Messages/MessagesContainer";
 import DialogItemsContainer from "./DialogItems/DialogItems";
 
-type DialogsPropsType = {
-}
+type DialogsPropsType = {}
 const Dialogs: FC<DialogsPropsType> = () => {
     return (
         <div className={style.dialogs}>
-            <DialogItemsContainer />
-            <MessagesContainer />
+            <DialogItemsContainer/>
+            <MessagesContainer/>
         </div>
     );
 };

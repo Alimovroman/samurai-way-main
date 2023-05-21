@@ -21,7 +21,7 @@ const LoginForm: FC<InjectedFormProps<LoginFormDataType,  PropsLoginFormType> & 
         <form onSubmit={handleSubmit} className={s.formBlock}>
             {createField('Email', 'email', Input, [required], '', {})}
             {createField('Password', 'password', Input, [required], '', {type: 'password'})}
-            {createField(null, 'rememberMe', Input, [], 'remember me',  {type: 'checkbox'})}
+            {createField(null, 'rememberMe', Input, [], 'Remember me',  {type: 'checkbox'})}
             {captcha && <img src={captcha}/>}
             {captcha &&  createField(null, 'captcha', Input, [required], '',  {})}
             {error &&

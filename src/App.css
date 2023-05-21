@@ -18,11 +18,13 @@
   padding-top: 20px;
   padding-bottom: 15px;
   min-height: 80%;
-  color: #777d74;
+  /*color: #777d74;*/
+  color: #555770;
   /*display: flex;*/
   /*align-items: flex-start;*/
   /*justify-content: center;*/
-;
+  /*display: table;*/
+  /*table-layout: fixed;*/
 
 
 }

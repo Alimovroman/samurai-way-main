@@ -1,5 +1,23 @@
 .banner {
+    width: 98%;
     height: 300px;
+}
+.avatarContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 0;
+}
+.avatar {
+    width: 100px;
+    border-radius: 50%;
+}
+.inputFile {
+    border: none;
+}
+.status {
+    padding-bottom: 35px;
 }
 .button {
     margin-left: 10px;

@@ -1,8 +1,23 @@
-.messages {
-    flex-basis: 60%;
+.messagesBlock {
+    flex-basis: 75%;
+    min-height: 65vh;
+    /*width: 100%;*/
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     margin-top: 15px;
+    background-color: #f8f9fa;
+    /*margin-top: -20px;*/
+
+}
+.messageWrapper {
+    padding-top: 20px;
+}
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 .button {
     margin-left: 10px;
@@ -21,3 +36,19 @@
     align-items: center;
     justify-content: center;
 }
+.textArea {
+    /*display: block;*/
+    width: 500px;
+    padding: 0.375rem 0.75rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #555770;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    appearance: none;
+    border-radius: 0.313rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+

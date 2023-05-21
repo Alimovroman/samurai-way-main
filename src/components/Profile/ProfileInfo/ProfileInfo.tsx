@@ -43,13 +43,15 @@ const ProfileInfo: FC<PropsType> = ({
     return (
         <div>
             <div>
-                <img className={style.banner} src={'https://kipmu.ru/wp-content/uploads/rost.jpg'} alt={'banner'}/>
+                <img className={style.banner} src={'https://catherineasquithgallery.com/uploads/posts/2021-03/1614857449_178-p-fon-okeana-245.jpg'} alt={'banner'}/>
             </div>
             <div>
                 <div>
-                    <img src={userProfile.photos.large || avatar} alt={'photos'}/>
-                    <div>
-                        {isOwner && <input type={"file"} onChange={mainFotoSelected} />}
+                    <div className={style.avatarContainer}>
+                        <img src={userProfile.photos.large || avatar} alt={'photos'} className={style.avatar}/>
+                        <div>
+                            {isOwner && <input type={"file"} onChange={mainFotoSelected} className={style.inputFile}/>}
+                        </div>
                     </div>
                     <ProfileStatus status={status} updateStatus={updateStatus}/>
                     {editMode
@@ -82,7 +84,7 @@ const ProfileData: FC<ProfileDataPropsType> = ({userProfile, isOwner, changeEdit
 
             <p>About me: {userProfile.aboutMe}</p>
             <div>
-                <h3>Contacts :</h3>
+                <h4>Contacts :</h4>
                 {Object.keys(userProfile.contacts)
                     .map((key, i) => <Contact key={i}
                                               contactTitle={key}
