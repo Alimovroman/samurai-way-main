@@ -26,21 +26,25 @@ const User: FC<PropsType> = ({user, followingProgress , followed, unfollowed}) =
                 </div>
                 <div>
                     {user.followed
-                        ? <button disabled={followingProgress.some(id => id === user.id)} onClick={() => {
+                        ? <button disabled={followingProgress.some(id => id === user.id)}
+                                  className={style.buttonSubscribe}
+                                  onClick={() => {
                             unfollowed(user.id)
                         }}>
                             follow
                         </button>
 
-                        : <button disabled={followingProgress.some(id => id === user.id)} onClick={() => {
+                        : <button disabled={followingProgress.some(id => id === user.id)}
+                                  className={style.buttonSubscribe}
+                                  onClick={() => {
                             followed(user.id)
                         }}>
                             unfollow
                         </button>}
                 </div>
             </div>
-            <div className={style.userInfo}>
-                <div>
+            <div className={style.userInfoWrapper}>
+                <div className={style.userInfo}>
                     <div>{user.name}</div>
                     <div>{user.status}</div>
                 </div>

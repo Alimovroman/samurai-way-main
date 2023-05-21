@@ -5,21 +5,36 @@
 .user {
     display: flex;
     margin-bottom: 20px;
-    width: 100%;
+    width: 92%;
     margin-left: 25px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
 }
 .avatar {
     width: 80px;
+    border-radius: 50%;
 }
-.userInfo {
+.buttonSubscribe {
+    color: #fff;
+    background-color: #50b5ff;
+    border-radius: 10px;
+    padding: 8px 15px;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.userInfoWrapper {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     /*width: 100%;*/
-    border: 1px solid #333333;
+    /*border: 1px solid #333333;*/
     border-radius: 10px;
     width: 60%;
     margin-left: 20px;
+
+}
+.userInfo {
+    width: 30%;
 }
 .paginatorWrapper {
     margin-top: 40px;
